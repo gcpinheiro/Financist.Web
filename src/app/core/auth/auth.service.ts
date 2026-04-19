@@ -23,11 +23,7 @@ export class AuthService {
 
   login(payload: LoginRequest): Observable<LoginResponse> {
     if (environment.useMockData) {
-      const response = this.buildMockResponse(payload);
-      return new Observable<LoginResponse>((subscriber) => {
-        subscriber.next(response);
-        subscriber.complete();
-      }).pipe(
+      return of(this.buildMockResponse(payload.email, 'Gabriel Costa')).pipe(
         delay(550),
         tap((result) => this.persistSession(result))
       );
@@ -38,12 +34,17 @@ export class AuthService {
       .pipe(tap((result) => this.persistSession(result)));
   }
 
-  register(payload: RegisterRequest): Observable<void> {
+  register(payload: RegisterRequest): Observable<LoginResponse> {
     if (environment.useMockData) {
-      return of(void 0).pipe(delay(650));
+      return of(this.buildMockResponse(payload.email, payload.fullName)).pipe(
+        delay(650),
+        tap((result) => this.persistSession(result))
+      );
     }
 
-    return this.api.post<void, RegisterRequest>('/auth/register', payload);
+    return this.api
+      .post<LoginResponse, RegisterRequest>('/auth/register', payload)
+      .pipe(tap((result) => this.persistSession(result)));
   }
 
   logout(redirect = true): void {
@@ -59,20 +60,18 @@ export class AuthService {
   private persistSession(response: LoginResponse): void {
     this.tokenStorage.persistSession(response);
     this.accessTokenState.set(response.accessToken);
-    this.currentUserState.set(response.user);
+    this.currentUserState.set({
+      fullName: response.fullName,
+      email: response.email
+    });
   }
 
-  private buildMockResponse(payload: LoginRequest): LoginResponse {
+  private buildMockResponse(email: string, fullName: string): LoginResponse {
     return {
       accessToken: 'mock-jwt-token.financist.dashboard',
-      expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 8).toISOString(),
-      user: {
-        id: 'user-01',
-        name: 'Gabriel Costa',
-        email: payload.email,
-        role: 'Finance Lead',
-        initials: 'GC'
-      }
+      expiresAtUtc: new Date(Date.now() + 1000 * 60 * 60 * 8).toISOString(),
+      fullName,
+      email
     };
   }
 }

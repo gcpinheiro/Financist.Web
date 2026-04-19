@@ -35,10 +35,10 @@ export class DocumentsPageComponent {
   protected readonly lastUploadMessage = signal('');
 
   protected readonly columns: DataTableColumn[] = [
-    { key: 'fileName', label: 'File' },
-    { key: 'source', label: 'Source' },
-    { key: 'importedAt', label: 'Imported at', type: 'date' },
-    { key: 'records', label: 'Records', align: 'end' },
+    { key: 'originalFileName', label: 'File' },
+    { key: 'contentType', label: 'Content type' },
+    { key: 'uploadedAtUtc', label: 'Uploaded at', type: 'date' },
+    { key: 'sizeBytes', label: 'Size', align: 'end', cell: (row) => this.formatSize(row.sizeBytes) },
     { key: 'status', label: 'Status', type: 'badge', align: 'end' }
   ];
 
@@ -58,12 +58,24 @@ export class DocumentsPageComponent {
     this.documentsService.upload(files).subscribe({
       next: (imports) => {
         this.uploading.set(false);
-        this.lastUploadMessage.set(`${imports.length} file(s) queued for processing.`);
+        this.lastUploadMessage.set(`${imports.length} file(s) uploaded successfully.`);
         input.value = '';
       },
       error: () => {
         this.uploading.set(false);
       }
     });
+  }
+
+  private formatSize(sizeBytes: number): string {
+    if (sizeBytes >= 1024 * 1024) {
+      return `${(sizeBytes / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    if (sizeBytes >= 1024) {
+      return `${Math.round(sizeBytes / 1024)} KB`;
+    }
+
+    return `${sizeBytes} B`;
   }
 }

@@ -3,7 +3,7 @@ import { delay, finalize, Observable, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../core/api/api.service';
 import { MOCK_GOALS } from '../../shared/data/mock-finance.data';
-import { Goal } from '../../shared/models/goal.model';
+import { CreateGoalRequest, Goal } from '../../shared/models/goal.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,11 +38,17 @@ export class GoalsService {
     });
   }
 
-  create(payload: Omit<Goal, 'id'>): Observable<Goal> {
+  create(payload: CreateGoalRequest): Observable<Goal> {
     if (environment.useMockData) {
       const goal: Goal = {
         id: `goal-${Date.now()}`,
-        ...payload
+        name: payload.name,
+        description: payload.description,
+        targetAmount: payload.targetAmount,
+        currentAmount: payload.initialAmount,
+        currency: payload.currency,
+        progressPercentage:
+          payload.targetAmount > 0 ? Math.round((payload.initialAmount / payload.targetAmount) * 100) : 0
       };
 
       return of(goal).pipe(
@@ -54,7 +60,7 @@ export class GoalsService {
       );
     }
 
-    return this.api.post<Goal, Omit<Goal, 'id'>>('/goals', payload).pipe(
+    return this.api.post<Goal, CreateGoalRequest>('/goals', payload).pipe(
       tap((created) => {
         this.goalsState.set([created, ...this.goalsState()]);
         this.initialized.set(true);

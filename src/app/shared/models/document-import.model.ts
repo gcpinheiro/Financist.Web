@@ -1,8 +1,11 @@
+export type DocumentImportStatus = 'Pending' | 'Processing' | 'Completed' | 'Failed';
+
 export interface DocumentImport {
   id: string;
-  fileName: string;
-  source: string;
-  importedAt: string;
-  records: number;
-  status: 'Queued' | 'Processing' | 'Completed' | 'Failed';
+  storedFileName: string | null;
+  originalFileName: string | null;
+  contentType: string | null;
+  sizeBytes: number;
+  status: DocumentImportStatus;
+  uploadedAtUtc: string;
 }

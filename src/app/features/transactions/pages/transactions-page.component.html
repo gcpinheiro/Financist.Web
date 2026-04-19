@@ -2,7 +2,7 @@
   <app-page-header
     eyebrow="Operations"
     title="Transactions ledger"
-    subtitle="Review cash movement, booked expenses, and incoming revenue in one streamlined ledger."
+    subtitle="Review recorded inflows and outflows with their real category, card, and occurrence date."
   >
     <app-primary-button actions icon="plus" routerLink="/transactions/new">New transaction</app-primary-button>
   </app-page-header>
@@ -29,7 +29,7 @@
   } @else if (transactions().length) {
     <app-table-card
       title="All transactions"
-      subtitle="Your latest financial activity across accounts and payment methods."
+      subtitle="Your latest financial activity as returned by the API ledger."
     >
       <app-data-table [columns]="columns" [rows]="transactions()" trackByKey="id" />
     </app-table-card>

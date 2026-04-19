@@ -1,14 +1,15 @@
-export type TransactionType = 'income' | 'expense';
-export type TransactionStatus = 'Completed' | 'Pending' | 'Scheduled';
+export type TransactionType = 'Income' | 'Expense';
 
 export interface Transaction {
   id: string;
-  description: string;
+  description: string | null;
   amount: number;
-  date: string;
-  category: string;
-  paymentMethod: string;
-  account: string;
+  currency: string | null;
   type: TransactionType;
-  status: TransactionStatus;
+  occurredOn: string;
+  categoryId: string | null;
+  cardId: string | null;
+  notes: string | null;
 }
+
+export type CreateTransactionRequest = Omit<Transaction, 'id'>;

@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { delay, finalize, Observable, of, tap } from 'rxjs';
+import { delay, finalize, forkJoin, Observable, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../core/api/api.service';
 import { MOCK_DOCUMENT_IMPORTS } from '../../shared/data/mock-finance.data';
@@ -23,9 +23,7 @@ export class DocumentsService {
 
     this.loading.set(true);
 
-    const request$ = environment.useMockData
-      ? of(MOCK_DOCUMENT_IMPORTS).pipe(delay(220))
-      : this.api.get<DocumentImport[]>('/documents/imports');
+    const request$ = environment.useMockData ? of(MOCK_DOCUMENT_IMPORTS).pipe(delay(220)) : of([]);
 
     request$.pipe(finalize(() => this.loading.set(false))).subscribe({
       next: (documents) => {
@@ -42,11 +40,12 @@ export class DocumentsService {
     if (environment.useMockData) {
       const imports = files.map((file, index) => ({
         id: `doc-${Date.now()}-${index}`,
-        fileName: file.name,
-        source: 'Manual upload',
-        importedAt: new Date().toISOString(),
-        records: Math.max(12, Math.round(file.size / 400)),
-        status: 'Queued'
+        storedFileName: `mock-${Date.now()}-${index}-${file.name}`,
+        originalFileName: file.name,
+        contentType: file.type || 'application/octet-stream',
+        sizeBytes: file.size,
+        status: 'Pending',
+        uploadedAtUtc: new Date().toISOString()
       })) satisfies DocumentImport[];
 
       return of(imports).pipe(
@@ -58,10 +57,13 @@ export class DocumentsService {
       );
     }
 
-    const formData = new FormData();
-    files.forEach((file) => formData.append('files', file));
-
-    return this.api.post<DocumentImport[], FormData>('/documents/imports', formData).pipe(
+    return forkJoin(
+      files.map((file) => {
+        const formData = new FormData();
+        formData.append('File', file);
+        return this.api.post<DocumentImport, FormData>('/documents/upload', formData);
+      })
+    ).pipe(
       tap((created) => {
         this.documentsState.set([...created, ...this.documentsState()]);
         this.initialized.set(true);

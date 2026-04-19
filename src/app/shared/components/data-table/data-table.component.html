@@ -15,10 +15,10 @@
             <td [class.align-end]="column.align === 'end'">
               @if (column.type === 'badge') {
                 <span class="badge" [class]="badgeClass(cellValue(row, column))">
-                  {{ formatValue(cellValue(row, column), column) }}
+                  {{ formatValue(row, cellValue(row, column), column) }}
                 </span>
               } @else {
-                {{ formatValue(cellValue(row, column), column) }}
+                {{ formatValue(row, cellValue(row, column), column) }}
               }
             </td>
           }

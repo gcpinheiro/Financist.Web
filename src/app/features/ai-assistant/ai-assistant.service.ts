@@ -43,7 +43,7 @@ export class AiAssistantService {
       history
     };
 
-    const request$ = environment.useMockData
+    const request$ = environment.useMockAiAssistant
       ? of({
           message: this.buildAssistantMessage(this.buildMockReply(normalizedContent, history))
         }).pipe(delay(750))

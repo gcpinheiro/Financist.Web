@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CardsService } from '../../cards/cards.service';
+import { CategoriesService } from '../../categories/categories.service';
 import { TransactionsService } from '../transactions.service';
 import { DataTableComponent } from '../../../shared/components/data-table/data-table.component';
 import { EmptyStateComponent } from '../../../shared/components/empty-state/empty-state.component';
@@ -30,32 +32,59 @@ import { DataTableColumn } from '../../../shared/models/ui.models';
 })
 export class TransactionsPageComponent {
   private readonly transactionsService = inject(TransactionsService);
+  private readonly categoriesService = inject(CategoriesService);
+  private readonly cardsService = inject(CardsService);
 
   protected readonly transactions = this.transactionsService.transactions;
   protected readonly loading = this.transactionsService.loading;
 
   protected readonly columns: DataTableColumn[] = [
     { key: 'description', label: 'Description' },
-    { key: 'category', label: 'Category' },
-    { key: 'account', label: 'Account' },
-    { key: 'date', label: 'Date', type: 'date' },
-    { key: 'amount', label: 'Amount', type: 'currency', align: 'end' },
-    { key: 'status', label: 'Status', type: 'badge', align: 'end' }
+    { key: 'type', label: 'Type', type: 'badge' },
+    { key: 'categoryId', label: 'Category', cell: (row) => this.categoryName(row.categoryId) },
+    { key: 'cardId', label: 'Card', cell: (row) => this.cardLabel(row.cardId) },
+    { key: 'occurredOn', label: 'Date', type: 'date' },
+    {
+      key: 'amount',
+      label: 'Amount',
+      type: 'currency',
+      align: 'end',
+      currencyCode: (row) => row.currency
+    }
   ];
 
   protected readonly incomeTotal = computed(() =>
     this.transactions()
-      .filter((transaction) => transaction.type === 'income')
+      .filter((transaction) => transaction.type === 'Income')
       .reduce((sum, transaction) => sum + transaction.amount, 0)
   );
 
   protected readonly expenseTotal = computed(() =>
     this.transactions()
-      .filter((transaction) => transaction.type === 'expense')
+      .filter((transaction) => transaction.type === 'Expense')
       .reduce((sum, transaction) => sum + transaction.amount, 0)
   );
 
   constructor() {
     this.transactionsService.load();
+    this.categoriesService.load();
+    this.cardsService.load();
+  }
+
+  private categoryName(categoryId: string | null): string {
+    if (!categoryId) {
+      return 'Uncategorized';
+    }
+
+    return this.categoriesService.categories().find((category) => category.id === categoryId)?.name ?? 'Unknown';
+  }
+
+  private cardLabel(cardId: string | null): string {
+    if (!cardId) {
+      return '-';
+    }
+
+    const card = this.cardsService.cards().find((item) => item.id === cardId);
+    return card ? `${card.name ?? 'Card'} • ${card.last4Digits ?? '----'}` : 'Unknown';
   }
 }

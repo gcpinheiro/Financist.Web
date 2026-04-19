@@ -10,15 +10,13 @@ export interface RegisterRequest {
 }
 
 export interface AuthUser {
-  id: string;
-  name: string;
+  fullName: string;
   email: string;
-  role: string;
-  initials: string;
 }
 
 export interface LoginResponse {
   accessToken: string;
-  expiresAt: string;
-  user: AuthUser;
+  expiresAtUtc: string;
+  fullName: string;
+  email: string;
 }

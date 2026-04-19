@@ -2,7 +2,7 @@
   <app-page-header
     eyebrow="Structure"
     title="Budget categories"
-    subtitle="Maintain a clean category system so analytics, imports, and budgets stay reliable."
+    subtitle="Maintain a clean category system so transactions and reporting stay reliable."
   >
     <app-primary-button actions icon="plus" routerLink="/categories/new">New category</app-primary-button>
   </app-page-header>
@@ -12,7 +12,7 @@
   } @else if (categories().length) {
     <app-table-card
       title="Active categories"
-      subtitle="Categories available for transactions, reporting, and budget mapping."
+      subtitle="Categories available for transactions and reporting."
     >
       <app-data-table [columns]="columns" [rows]="categories()" trackByKey="id" />
     </app-table-card>

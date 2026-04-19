@@ -2,27 +2,20 @@
   <app-page-header
     eyebrow="Create"
     title="Create a savings goal"
-    subtitle="Map the target, current progress, deadline, and category so momentum stays measurable."
+    subtitle="Map the target, initial amount, and currency so the payload matches the goals endpoint."
   />
 
   <app-section-card
     title="Goal configuration"
-    subtitle="Goals become more useful when they align with categories and track against a clear deadline."
+    subtitle="The current API accepts goal name, optional description, target amount, currency, and initial amount."
   >
     <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="create-page__grid">
         <app-form-field [form]="form" controlName="name" label="Goal name" placeholder="Emergency reserve" />
-        <app-form-field
-          [form]="form"
-          controlName="category"
-          label="Category"
-          type="select"
-          [options]="categoryOptions()"
-        />
+        <app-form-field [form]="form" controlName="description" label="Description" type="textarea" placeholder="Optional context for this goal" />
         <app-form-field [form]="form" controlName="targetAmount" label="Target amount" type="number" />
-        <app-form-field [form]="form" controlName="currentAmount" label="Current amount" type="number" />
-        <app-form-field [form]="form" controlName="deadline" label="Deadline" type="date" />
-        <app-form-field [form]="form" controlName="color" label="Color token" placeholder="#6ea8fe" />
+        <app-form-field [form]="form" controlName="currency" label="Currency" placeholder="USD" />
+        <app-form-field [form]="form" controlName="initialAmount" label="Initial amount" type="number" />
       </div>
 
       <div class="create-page__actions">

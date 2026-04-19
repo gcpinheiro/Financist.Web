@@ -25,15 +25,20 @@ export class DataTableComponent {
     return row?.[column.key];
   }
 
-  protected formatValue(value: unknown, column: DataTableColumn): string {
+  protected formatValue(row: any, value: unknown, column: DataTableColumn): string {
     if (value === null || value === undefined || value === '') {
       return '-';
     }
 
     if (column.type === 'currency' && typeof value === 'number') {
+      const requestedCurrency =
+        typeof column.currencyCode === 'function' ? column.currencyCode(row) : column.currencyCode;
+      const currency =
+        requestedCurrency && requestedCurrency.trim() ? requestedCurrency.trim().toUpperCase() : 'USD';
+
       return new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: 'USD',
+        currency,
         maximumFractionDigits: 0
       }).format(value);
     }

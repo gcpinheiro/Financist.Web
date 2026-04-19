@@ -52,10 +52,6 @@
     </div>
 
     <form class="login-page__form" [formGroup]="form" (ngSubmit)="submit()">
-      @if (successMessage()) {
-        <div class="login-page__success">{{ successMessage() }}</div>
-      }
-
       <app-form-field
         [form]="form"
         controlName="email"
@@ -87,7 +83,7 @@
     </form>
 
     <div class="login-page__footer">
-      <span>Mock-ready default credentials are pre-filled for local development.</span>
+      <span>Use an account provisioned by the API, or create one from the registration flow.</span>
       <a routerLink="/auth/register">Need a new workspace account?</a>
     </div>
   </section>

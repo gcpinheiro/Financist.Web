@@ -1,8 +1,10 @@
+import { TransactionType } from './transaction.model';
+
 export interface Category {
   id: string;
-  name: string;
-  type: 'income' | 'expense';
-  color: string;
-  budget: number;
-  icon: string;
+  name: string | null;
+  type: TransactionType;
+  isSystem: boolean;
 }
+
+export type CreateCategoryRequest = Omit<Category, 'id' | 'isSystem'>;

@@ -12,7 +12,7 @@
   } @else if (goals().length) {
     <app-table-card
       title="Active goals"
-      subtitle="Track progress, deadlines, and how much remains to reach each milestone."
+      subtitle="Track progress, current value, and target value for each goal."
     >
       <app-data-table [columns]="columns" [rows]="goals()" trackByKey="id" />
     </app-table-card>

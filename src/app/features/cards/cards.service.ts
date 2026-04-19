@@ -3,7 +3,7 @@ import { delay, finalize, Observable, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../core/api/api.service';
 import { MOCK_CARDS } from '../../shared/data/mock-finance.data';
-import { Card } from '../../shared/models/card.model';
+import { Card, CreateCardRequest } from '../../shared/models/card.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class CardsService {
     });
   }
 
-  create(payload: Omit<Card, 'id'>): Observable<Card> {
+  create(payload: CreateCardRequest): Observable<Card> {
     if (environment.useMockData) {
       const card: Card = {
         id: `card-${Date.now()}`,
@@ -54,7 +54,7 @@ export class CardsService {
       );
     }
 
-    return this.api.post<Card, Omit<Card, 'id'>>('/cards', payload).pipe(
+    return this.api.post<Card, CreateCardRequest>('/cards', payload).pipe(
       tap((created) => {
         this.cardsState.set([created, ...this.cardsState()]);
         this.initialized.set(true);

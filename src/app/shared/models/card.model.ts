@@ -1,11 +1,11 @@
 export interface Card {
   id: string;
-  name: string;
-  brand: string;
-  lastDigits: string;
-  creditLimit: number;
-  availableLimit: number;
+  name: string | null;
+  last4Digits: string | null;
+  limitAmount: number;
+  currency: string | null;
   closingDay: number;
   dueDay: number;
-  status: 'Active' | 'Locked';
 }
+
+export type CreateCardRequest = Omit<Card, 'id'>;

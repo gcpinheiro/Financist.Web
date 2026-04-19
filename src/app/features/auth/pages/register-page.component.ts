@@ -56,12 +56,7 @@ export class RegisterPageComponent {
     this.authService.register(this.form.getRawValue() as RegisterRequest).subscribe({
       next: () => {
         this.loading.set(false);
-        void this.router.navigate(['/auth/login'], {
-          queryParams: {
-            registered: '1',
-            email: this.form.getRawValue().email
-          }
-        });
+        void this.router.navigateByUrl('/dashboard');
       },
       error: () => {
         this.loading.set(false);

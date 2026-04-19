@@ -56,15 +56,23 @@ export class AppShellComponent {
   }
 
   protected userName(): string {
-    return this.authService.currentUser()?.name ?? 'Financist user';
+    return this.authService.currentUser()?.fullName ?? 'Financist user';
   }
 
   protected userRole(): string {
-    return this.authService.currentUser()?.role ?? 'Workspace member';
+    return 'Workspace member';
   }
 
   protected userInitials(): string {
-    return this.authService.currentUser()?.initials ?? 'FN';
+    const fullName = this.authService.currentUser()?.fullName ?? 'Financist user';
+    const initials = fullName
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() ?? '')
+      .join('');
+
+    return initials || 'FU';
   }
 
   private findRouteData(route: ActivatedRoute): Data {

@@ -8,6 +8,7 @@ import { PageHeaderComponent } from '../../../shared/components/page-header/page
 import { PrimaryButtonComponent } from '../../../shared/components/primary-button/primary-button.component';
 import { SecondaryButtonComponent } from '../../../shared/components/secondary-button/secondary-button.component';
 import { SectionCardComponent } from '../../../shared/components/section-card/section-card.component';
+import { CreateCategoryRequest } from '../../../shared/models/category.model';
 import { FormFieldOption } from '../../../shared/models/ui.models';
 
 @Component({
@@ -33,16 +34,13 @@ export class CreateCategoryPageComponent {
 
   protected readonly saving = signal(false);
   protected readonly typeOptions: FormFieldOption[] = [
-    { label: 'Expense', value: 'expense' },
-    { label: 'Income', value: 'income' }
+    { label: 'Expense', value: 'Expense' },
+    { label: 'Income', value: 'Income' }
   ];
 
   protected readonly form = this.formBuilder.group({
     name: ['', [Validators.required]],
-    type: ['expense', [Validators.required]],
-    budget: [null as number | null, [Validators.required, Validators.min(1)]],
-    color: ['#37d6c6', [Validators.required]],
-    icon: ['Grid', [Validators.required]]
+    type: ['Expense', [Validators.required]]
   });
 
   protected submit(): void {
@@ -53,7 +51,13 @@ export class CreateCategoryPageComponent {
 
     this.saving.set(true);
 
-    this.categoriesService.create(this.form.getRawValue() as never).subscribe({
+    const rawValue = this.form.getRawValue();
+    const payload: CreateCategoryRequest = {
+      name: (rawValue.name ?? '').trim(),
+      type: rawValue.type as CreateCategoryRequest['type']
+    };
+
+    this.categoriesService.create(payload).subscribe({
       next: () => {
         this.saving.set(false);
         void this.router.navigateByUrl('/categories');

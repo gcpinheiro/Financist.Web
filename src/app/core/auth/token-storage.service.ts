@@ -34,7 +34,13 @@ export class TokenStorageService {
     }
 
     localStorage.setItem(ACCESS_TOKEN_KEY, response.accessToken);
-    localStorage.setItem(USER_KEY, JSON.stringify(response.user));
+    localStorage.setItem(
+      USER_KEY,
+      JSON.stringify({
+        fullName: response.fullName,
+        email: response.email
+      } satisfies AuthUser)
+    );
   }
 
   clearSession(): void {

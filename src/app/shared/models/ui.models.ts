@@ -3,6 +3,7 @@ export interface DataTableColumn {
   label: string;
   type?: 'text' | 'currency' | 'date' | 'badge' | 'percentage';
   align?: 'start' | 'end';
+  currencyCode?: string | ((row: any) => string | null | undefined);
   cell?: (row: any) => string | number | null | undefined;
 }
 

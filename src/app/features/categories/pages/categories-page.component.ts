@@ -34,9 +34,8 @@ export class CategoriesPageComponent {
 
   protected readonly columns: DataTableColumn[] = [
     { key: 'name', label: 'Category' },
-    { key: 'type', label: 'Flow type' },
-    { key: 'budget', label: 'Budget', type: 'currency', align: 'end' },
-    { key: 'icon', label: 'Icon' }
+    { key: 'type', label: 'Flow type', type: 'badge' },
+    { key: 'isSystem', label: 'Origin', type: 'badge', cell: (row) => (row.isSystem ? 'System' : 'Custom') }
   ];
 
   constructor() {

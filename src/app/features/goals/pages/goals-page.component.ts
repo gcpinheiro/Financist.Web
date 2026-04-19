@@ -34,17 +34,22 @@ export class GoalsPageComponent {
 
   protected readonly columns: DataTableColumn[] = [
     { key: 'name', label: 'Goal' },
-    { key: 'category', label: 'Category' },
-    { key: 'currentAmount', label: 'Current', type: 'currency', align: 'end' },
-    { key: 'targetAmount', label: 'Target', type: 'currency', align: 'end' },
+    { key: 'description', label: 'Description' },
     {
-      key: 'progress',
-      label: 'Progress',
-      type: 'percentage',
+      key: 'currentAmount',
+      label: 'Current',
+      type: 'currency',
       align: 'end',
-      cell: (goal) => Math.round((goal.currentAmount / goal.targetAmount) * 100)
+      currencyCode: (row) => row.currency
     },
-    { key: 'deadline', label: 'Deadline', type: 'date', align: 'end' }
+    {
+      key: 'targetAmount',
+      label: 'Target',
+      type: 'currency',
+      align: 'end',
+      currencyCode: (row) => row.currency
+    },
+    { key: 'progressPercentage', label: 'Progress', type: 'percentage', align: 'end' }
   ];
 
   constructor() {

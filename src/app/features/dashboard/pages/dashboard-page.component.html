@@ -2,7 +2,7 @@
   <app-page-header
     eyebrow="Overview"
     title="Financial command center"
-    subtitle="A high-level view of balances, category pressure, and how this month is unfolding."
+    subtitle="A high-level view of balances, ledger activity, and goal progress based on the live API."
   />
 
   @if (loading() && !summary()) {
@@ -10,112 +10,71 @@
   } @else if (summary(); as summaryValue) {
     <section class="dashboard-page__stats">
       <app-stat-card
-        label="Total Balance"
-        [value]="summaryValue.totalBalance | currency: 'USD' : 'symbol' : '1.0-0'"
+        label="Balance"
+        [value]="summaryValue.balance | currency: 'USD' : 'symbol' : '1.0-0'"
         icon="wallet"
-        change="+8.4%"
-        helper="vs last month"
+        helper="Net result from recorded income and expenses"
         tone="primary"
       />
       <app-stat-card
-        label="Monthly Income"
-        [value]="summaryValue.monthlyIncome | currency: 'USD' : 'symbol' : '1.0-0'"
+        label="Total income"
+        [value]="summaryValue.totalIncome | currency: 'USD' : 'symbol' : '1.0-0'"
         icon="trend"
-        change="+12.1%"
-        helper="booked this cycle"
+        [change]="summaryValue.transactionCount + ' transactions'"
+        helper="Captured in the current ledger"
         tone="success"
       />
       <app-stat-card
-        label="Monthly Expenses"
-        [value]="summaryValue.monthlyExpenses | currency: 'USD' : 'symbol' : '1.0-0'"
+        label="Total expenses"
+        [value]="summaryValue.totalExpenses | currency: 'USD' : 'symbol' : '1.0-0'"
         icon="transactions"
-        change="-3.2%"
-        helper="under expected run-rate"
+        helper="Current outflow recorded by the API"
         tone="warning"
       />
       <app-stat-card
-        label="Goals Progress"
-        [value]="summaryValue.goalsProgress + '%'"
+        label="Goals tracked"
+        [value]="summaryValue.goalCount.toString()"
         icon="target"
-        change="2 goals on track"
-        helper="savings momentum"
+        [change]="summaryValue.averageGoalProgress + '% avg progress'"
+        helper="Across all active goals"
         tone="info"
       />
     </section>
 
-    <section class="dashboard-page__charts">
-      <app-chart-card
-        title="Income vs expenses"
-        subtitle="Monitor the spread between inflows and outflows across recent months."
-      >
-        @if (isBrowser) {
-          <apx-chart
-            [series]="cashflowSeries()"
-            [chart]="lineChart"
-            [xaxis]="cashflowXAxis()"
-            [stroke]="lineStroke"
-            [colors]="['#37d6c6', '#ff7a90']"
-            [grid]="grid"
-            [yaxis]="yAxis"
-            [tooltip]="{ theme: 'dark' }"
-          />
-        } @else {
-          <app-loading-state label="Preparing chart..." />
-        }
-      </app-chart-card>
-
-      <app-chart-card
-        title="Expenses by category"
-        subtitle="See which categories are taking the largest share of spend."
-      >
-        @if (isBrowser) {
-          <apx-chart
-            [series]="donutSeries()"
-            [chart]="donutChart"
-            [labels]="donutLabels()"
-            [colors]="donutColors()"
-            [legend]="donutLegend"
-            [plotOptions]="donutPlotOptions"
-            [dataLabels]="{ enabled: false }"
-          />
-        } @else {
-          <app-loading-state label="Preparing chart..." />
-        }
-      </app-chart-card>
-    </section>
-
     <section class="dashboard-page__detail">
-      <app-chart-card
-        title="Balance trend"
-        subtitle="Follow reserve accumulation and liquidity direction over time."
-      >
-        @if (isBrowser) {
-          <apx-chart
-            [series]="balanceSeries()"
-            [chart]="areaChart"
-            [xaxis]="balanceXAxis()"
-            [stroke]="areaStroke"
-            [fill]="gradientFill"
-            [colors]="['#6ea8fe']"
-            [grid]="grid"
-            [yaxis]="yAxis"
-            [tooltip]="{ theme: 'dark' }"
+      @if (recentTransactions().length) {
+        <app-table-card
+          title="Recent transactions"
+          subtitle="Latest ledger entries pulled from the transactions endpoint."
+        >
+          <app-data-table
+            [columns]="recentTransactionsColumns"
+            [rows]="recentTransactions()"
+            trackByKey="id"
           />
-        } @else {
-          <app-loading-state label="Preparing chart..." />
-        }
-      </app-chart-card>
-
-      <app-table-card
-        title="Recent transactions"
-        subtitle="Latest booked movement across your finance workspace."
-      >
-        <app-data-table
-          [columns]="recentTransactionsColumns"
-          [rows]="summaryValue.recentTransactions"
-          trackByKey="id"
+        </app-table-card>
+      } @else {
+        <app-empty-state
+          title="No transactions returned"
+          description="Create transactions or connect data so the dashboard can show live ledger activity."
+          icon="transactions"
         />
-      </app-table-card>
+      }
+
+      @if (goalSnapshot().length) {
+        <app-table-card
+          title="Goal snapshot"
+          subtitle="Progress summary built from the goals endpoint."
+        >
+          <app-data-table [columns]="goalColumns" [rows]="goalSnapshot()" trackByKey="id" />
+        </app-table-card>
+      } @else {
+        <app-empty-state
+          title="No goals returned"
+          description="Create a goal to populate progress insights on the dashboard."
+          icon="goals"
+        />
+      }
     </section>
   }
 </div>

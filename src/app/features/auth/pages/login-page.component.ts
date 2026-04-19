@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/auth/auth.service';
 import { LoginRequest } from '../../../shared/models/auth.models';
@@ -28,35 +28,18 @@ export class LoginPageComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
 
   protected readonly loading = signal(false);
   protected readonly errorMessage = signal('');
-  protected readonly successMessage = signal('');
 
   protected readonly form = this.formBuilder.nonNullable.group({
-    email: ['finance@financist.app', [Validators.required, Validators.email]],
-    password: ['financist123', [Validators.required, Validators.minLength(6)]]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   constructor() {
     if (this.authService.isAuthenticated()) {
       void this.router.navigateByUrl('/dashboard');
-      return;
-    }
-
-    const email = this.route.snapshot.queryParamMap.get('email');
-    const registered = this.route.snapshot.queryParamMap.get('registered');
-
-    if (email) {
-      this.form.patchValue({
-        email,
-        password: ''
-      });
-    }
-
-    if (registered === '1') {
-      this.successMessage.set('Account created. Sign in with your new credentials to continue.');
     }
   }
 

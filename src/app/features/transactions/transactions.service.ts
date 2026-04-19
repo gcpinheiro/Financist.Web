@@ -3,7 +3,7 @@ import { delay, finalize, Observable, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../core/api/api.service';
 import { MOCK_TRANSACTIONS } from '../../shared/data/mock-finance.data';
-import { Transaction } from '../../shared/models/transaction.model';
+import { CreateTransactionRequest, Transaction } from '../../shared/models/transaction.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class TransactionsService {
     });
   }
 
-  create(payload: Omit<Transaction, 'id'>): Observable<Transaction> {
+  create(payload: CreateTransactionRequest): Observable<Transaction> {
     if (environment.useMockData) {
       const transaction: Transaction = {
         id: `tr-${Date.now()}`,
@@ -55,7 +55,7 @@ export class TransactionsService {
     }
 
     return this.api
-      .post<Transaction, Omit<Transaction, 'id'>>('/transactions', payload)
+      .post<Transaction, CreateTransactionRequest>('/transactions', payload)
       .pipe(
         tap((created) => {
           this.transactionsState.set([created, ...this.transactionsState()]);

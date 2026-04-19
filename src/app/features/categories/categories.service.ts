@@ -3,7 +3,7 @@ import { delay, finalize, Observable, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../core/api/api.service';
 import { MOCK_CATEGORIES } from '../../shared/data/mock-finance.data';
-import { Category } from '../../shared/models/category.model';
+import { Category, CreateCategoryRequest } from '../../shared/models/category.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,10 +38,11 @@ export class CategoriesService {
     });
   }
 
-  create(payload: Omit<Category, 'id'>): Observable<Category> {
+  create(payload: CreateCategoryRequest): Observable<Category> {
     if (environment.useMockData) {
       const category: Category = {
         id: `cat-${Date.now()}`,
+        isSystem: false,
         ...payload
       };
 
@@ -55,7 +56,7 @@ export class CategoriesService {
     }
 
     return this.api
-      .post<Category, Omit<Category, 'id'>>('/categories', payload)
+      .post<Category, CreateCategoryRequest>('/categories', payload)
       .pipe(
         tap((created) => {
           this.categoriesState.set([created, ...this.categoriesState()]);

@@ -34,11 +34,16 @@ export class CardsPageComponent {
 
   protected readonly columns: DataTableColumn[] = [
     { key: 'name', label: 'Card name' },
-    { key: 'brand', label: 'Brand' },
-    { key: 'lastDigits', label: 'Last digits' },
-    { key: 'creditLimit', label: 'Limit', type: 'currency', align: 'end' },
-    { key: 'availableLimit', label: 'Available', type: 'currency', align: 'end' },
-    { key: 'status', label: 'Status', type: 'badge', align: 'end' }
+    { key: 'last4Digits', label: 'Last digits', cell: (row) => `•••• ${row.last4Digits ?? '----'}` },
+    {
+      key: 'limitAmount',
+      label: 'Limit',
+      type: 'currency',
+      align: 'end',
+      currencyCode: (row) => row.currency
+    },
+    { key: 'closingDay', label: 'Closing day', align: 'end' },
+    { key: 'dueDay', label: 'Due day', align: 'end' }
   ];
 
   constructor() {

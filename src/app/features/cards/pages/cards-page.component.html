@@ -2,7 +2,7 @@
   <app-page-header
     eyebrow="Payments"
     title="Cards management"
-    subtitle="Keep limits, due dates, and available credit visible across every registered card."
+    subtitle="Keep limits, due dates, and statement cycle details visible across every registered card."
   >
     <app-primary-button actions icon="plus" routerLink="/cards/new">New card</app-primary-button>
   </app-page-header>
@@ -12,7 +12,7 @@
   } @else if (cards().length) {
     <app-table-card
       title="Registered cards"
-      subtitle="Cards mapped to your workspace for spending, statement imports, and scheduling."
+      subtitle="Cards mapped to your workspace with the fields currently exposed by the API."
     >
       <app-data-table [columns]="columns" [rows]="cards()" trackByKey="id" />
     </app-table-card>

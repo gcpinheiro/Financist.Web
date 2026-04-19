@@ -2,12 +2,12 @@
   <app-page-header
     eyebrow="Create"
     title="Add a new transaction"
-    subtitle="Capture the movement with the right account, category, and completion status."
+    subtitle="Capture the movement with the exact payload shape documented by the transactions endpoint."
   />
 
   <app-section-card
     title="Transaction details"
-    subtitle="Use a consistent structure now so the backend integration stays predictable later."
+    subtitle="Description, amount, currency, type, date, and optional category or card references."
   >
     <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="create-page__grid">
@@ -31,33 +31,16 @@
           type="number"
           placeholder="0.00"
         />
-        <app-form-field [form]="form" controlName="date" label="Date" type="date" />
         <app-form-field
           [form]="form"
-          controlName="category"
-          label="Category"
-          type="select"
-          [options]="categoryOptions()"
+          controlName="currency"
+          label="Currency"
+          placeholder="USD"
         />
-        <app-form-field
-          [form]="form"
-          controlName="paymentMethod"
-          label="Payment method"
-          placeholder="Wire transfer, card, Pix..."
-        />
-        <app-form-field
-          [form]="form"
-          controlName="account"
-          label="Account"
-          placeholder="Main treasury"
-        />
-        <app-form-field
-          [form]="form"
-          controlName="status"
-          label="Status"
-          type="select"
-          [options]="statusOptions"
-        />
+        <app-form-field [form]="form" controlName="occurredOn" label="Occurred on" type="date" />
+        <app-form-field [form]="form" controlName="categoryId" label="Category" type="select" [options]="categoryOptions()" />
+        <app-form-field [form]="form" controlName="cardId" label="Card" type="select" [options]="cardOptions()" />
+        <app-form-field [form]="form" controlName="notes" label="Notes" type="textarea" placeholder="Optional internal note" />
       </div>
 
       <div class="create-page__actions">
