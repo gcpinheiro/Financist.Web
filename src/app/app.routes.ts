@@ -18,6 +18,17 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'register',
+        loadComponent: () =>
+          import('./features/auth/pages/register-page.component').then(
+            (component) => component.RegisterPageComponent
+          ),
+        data: {
+          title: 'Create account',
+          subtitle: 'Set up your Financist workspace access.'
+        }
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'login'

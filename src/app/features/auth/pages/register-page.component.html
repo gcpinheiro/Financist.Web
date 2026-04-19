@@ -1,0 +1,99 @@
+<div class="register-page">
+  <section class="register-page__hero surface-card">
+    <div class="register-page__hero-badge">
+      <span>Workspace onboarding</span>
+    </div>
+
+    <div class="register-page__hero-copy">
+      <h1>Launch your Financist workspace with one account setup flow.</h1>
+      <p>
+        Create your access, connect your finance operations, and move into a familiar dark
+        command center built for fast daily execution.
+      </p>
+    </div>
+
+    <div class="register-page__highlights">
+      <article>
+        <app-icon name="assistant" [size]="20" />
+        <div>
+          <strong>AI-ready workspace</strong>
+          <span>Start with a chat-first environment prepared for guidance and next actions.</span>
+        </div>
+      </article>
+      <article>
+        <app-icon name="target" [size]="20" />
+        <div>
+          <strong>Goals and controls</strong>
+          <span>Organize spending structure, savings targets, and account visibility from day one.</span>
+        </div>
+      </article>
+      <article>
+        <app-icon name="documents" [size]="20" />
+        <div>
+          <strong>Import-friendly operations</strong>
+          <span>Bring statements and workflows into one place as your finance stack grows.</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="register-page__panel surface-card">
+    <div class="register-page__panel-header">
+      <div class="register-page__brand">
+        <div class="register-page__brand-mark">F</div>
+        <div>
+          <strong>Financist</strong>
+          <span>Create your account</span>
+        </div>
+      </div>
+
+      <h2>Set up access</h2>
+      <p>Enter your name, email, and password to create a new workspace login.</p>
+    </div>
+
+    <form class="register-page__form" [formGroup]="form" (ngSubmit)="submit()">
+      <app-form-field
+        [form]="form"
+        controlName="fullName"
+        label="Full name"
+        placeholder="Alex Johnson"
+        autocomplete="name"
+      />
+
+      <app-form-field
+        [form]="form"
+        controlName="email"
+        label="Email"
+        placeholder="alex@company.com"
+        type="email"
+        autocomplete="email"
+      />
+
+      <app-form-field
+        [form]="form"
+        controlName="password"
+        label="Password"
+        placeholder="Create a password"
+        type="password"
+        autocomplete="new-password"
+        hint="Use at least 6 characters."
+      />
+
+      @if (errorMessage()) {
+        <div class="register-page__error">{{ errorMessage() }}</div>
+      }
+
+      <div class="register-page__actions">
+        <app-primary-button type="submit" [fullWidth]="true" [disabled]="loading()">
+          {{ loading() ? 'Creating account...' : 'Create account' }}
+        </app-primary-button>
+        <app-secondary-button [fullWidth]="true" (pressed)="goToLogin()">Back to sign in</app-secondary-button>
+      </div>
+    </form>
+
+    <div class="register-page__footer">
+      <span>Already have access?</span>
+      <a routerLink="/auth/login">Sign in instead</a>
+    </div>
+  </section>
+</div>

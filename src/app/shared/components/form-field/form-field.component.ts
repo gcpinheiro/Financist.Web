@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
-import { AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldOption } from '../../models/ui.models';
 
 @Component({
@@ -25,9 +25,19 @@ export class FormFieldComponent {
   readonly step = input('0.01');
 
   protected readonly control = computed(
-    () => this.form().get(this.controlName()) as AbstractControl | null
+    () => this.form().get(this.controlName()) as FormControl | null
   );
   protected readonly fieldId = computed(() => `field-${this.controlName()}`);
+
+  protected resolvedControl(): FormControl {
+    const control = this.control();
+
+    if (!control) {
+      throw new Error(`Control "${this.controlName()}" was not found in the provided form group.`);
+    }
+
+    return control;
+  }
 
   protected showError(): boolean {
     const control = this.control();

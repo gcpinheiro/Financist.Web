@@ -52,6 +52,10 @@
     </div>
 
     <form class="login-page__form" [formGroup]="form" (ngSubmit)="submit()">
+      @if (successMessage()) {
+        <div class="login-page__success">{{ successMessage() }}</div>
+      }
+
       <app-form-field
         [form]="form"
         controlName="email"
@@ -78,12 +82,13 @@
         <app-primary-button type="submit" [fullWidth]="true" [disabled]="loading()">
           {{ loading() ? 'Signing in...' : 'Open dashboard' }}
         </app-primary-button>
-        <app-secondary-button [fullWidth]="true">Secure workspace</app-secondary-button>
+        <app-secondary-button [fullWidth]="true" (pressed)="goToRegister()">Create account</app-secondary-button>
       </div>
     </form>
 
     <div class="login-page__footer">
       <span>Mock-ready default credentials are pre-filled for local development.</span>
+      <a routerLink="/auth/register">Need a new workspace account?</a>
     </div>
   </section>
 </div>

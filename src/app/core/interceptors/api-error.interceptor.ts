@@ -10,7 +10,11 @@ export const apiErrorInterceptor: HttpInterceptorFn = (request, next) => {
 
   return next(request).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401 && !request.url.includes('/auth/login')) {
+      if (
+        error.status === 401 &&
+        !request.url.includes('/auth/login') &&
+        !request.url.includes('/auth/register')
+      ) {
         tokenStorage.clearSession();
         void router.navigateByUrl('/auth/login');
       }

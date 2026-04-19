@@ -1,4 +1,39 @@
 .ai-assistant-page {
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
+  min-height: calc(100dvh - 9rem);
+  align-content: start;
+}
+
+.ai-assistant-page__workspace {
+  position: relative;
+  min-height: clamp(38rem, calc(100dvh - 14rem), 56rem);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  border-radius: 1.9rem;
+  background:
+    radial-gradient(circle at top, rgba(55, 214, 198, 0.16), transparent 28%),
+    linear-gradient(180deg, rgba(14, 23, 40, 0.98), rgba(7, 12, 22, 0.98));
+}
+
+.ai-assistant-page__workspace::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 12%),
+    radial-gradient(circle at top right, rgba(110, 168, 254, 0.12), transparent 26%);
+}
+
+@media (max-width: 768px) {
+  .ai-assistant-page {
+    min-height: calc(100dvh - 8rem);
+  }
+
+  .ai-assistant-page__workspace {
+    min-height: calc(100dvh - 13rem);
+    border-radius: 1.35rem;
+  }
 }

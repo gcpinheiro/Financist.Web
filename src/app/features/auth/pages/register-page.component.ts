@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/auth/auth.service';
-import { LoginRequest } from '../../../shared/models/auth.models';
+import { RegisterRequest } from '../../../shared/models/auth.models';
 import { FormFieldComponent } from '../../../shared/components/form-field/form-field.component';
 import { PrimaryButtonComponent } from '../../../shared/components/primary-button/primary-button.component';
 import { SecondaryButtonComponent } from '../../../shared/components/secondary-button/secondary-button.component';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'app-register-page',
   standalone: true,
   imports: [
     CommonModule,
@@ -21,42 +21,26 @@ import { IconComponent } from '../../../shared/ui/icon/icon.component';
     SecondaryButtonComponent,
     IconComponent
   ],
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.scss'
+  templateUrl: './register-page.component.html',
+  styleUrl: './register-page.component.scss'
 })
-export class LoginPageComponent {
+export class RegisterPageComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
 
   protected readonly loading = signal(false);
   protected readonly errorMessage = signal('');
-  protected readonly successMessage = signal('');
 
   protected readonly form = this.formBuilder.nonNullable.group({
-    email: ['finance@financist.app', [Validators.required, Validators.email]],
-    password: ['financist123', [Validators.required, Validators.minLength(6)]]
+    fullName: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   constructor() {
     if (this.authService.isAuthenticated()) {
       void this.router.navigateByUrl('/dashboard');
-      return;
-    }
-
-    const email = this.route.snapshot.queryParamMap.get('email');
-    const registered = this.route.snapshot.queryParamMap.get('registered');
-
-    if (email) {
-      this.form.patchValue({
-        email,
-        password: ''
-      });
-    }
-
-    if (registered === '1') {
-      this.successMessage.set('Account created. Sign in with your new credentials to continue.');
     }
   }
 
@@ -69,19 +53,24 @@ export class LoginPageComponent {
     this.loading.set(true);
     this.errorMessage.set('');
 
-    this.authService.login(this.form.getRawValue() as LoginRequest).subscribe({
+    this.authService.register(this.form.getRawValue() as RegisterRequest).subscribe({
       next: () => {
         this.loading.set(false);
-        void this.router.navigateByUrl('/dashboard');
+        void this.router.navigate(['/auth/login'], {
+          queryParams: {
+            registered: '1',
+            email: this.form.getRawValue().email
+          }
+        });
       },
       error: () => {
         this.loading.set(false);
-        this.errorMessage.set('We could not sign you in. Please verify your credentials and try again.');
+        this.errorMessage.set('We could not create your account. Please review the information and try again.');
       }
     });
   }
 
-  protected goToRegister(): void {
-    void this.router.navigateByUrl('/auth/register');
+  protected goToLogin(): void {
+    void this.router.navigateByUrl('/auth/login');
   }
 }

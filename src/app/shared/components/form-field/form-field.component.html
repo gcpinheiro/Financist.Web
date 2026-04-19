@@ -8,11 +8,11 @@
         [id]="fieldId()"
         [rows]="rows()"
         [placeholder]="placeholder()"
-        [formControlName]="controlName()"
+        [formControl]="resolvedControl()"
       ></textarea>
     }
     @case ('select') {
-      <select class="field__control" [id]="fieldId()" [formControlName]="controlName()">
+      <select class="field__control" [id]="fieldId()" [formControl]="resolvedControl()">
         <option value="">Select an option</option>
         @for (option of options(); track option.value) {
           <option [value]="option.value">{{ option.label }}</option>
@@ -27,7 +27,7 @@
         [placeholder]="placeholder()"
         [autocomplete]="autocomplete()"
         [step]="type() === 'number' ? step() : null"
-        [formControlName]="controlName()"
+        [formControl]="resolvedControl()"
       />
     }
   }

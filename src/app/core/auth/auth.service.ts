@@ -1,8 +1,8 @@
 import { inject, Injectable, computed, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, delay, tap } from 'rxjs';
+import { Observable, delay, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { AuthUser, LoginRequest, LoginResponse } from '../../shared/models/auth.models';
+import { AuthUser, LoginRequest, LoginResponse, RegisterRequest } from '../../shared/models/auth.models';
 import { ApiService } from '../api/api.service';
 import { TokenStorageService } from './token-storage.service';
 
@@ -36,6 +36,14 @@ export class AuthService {
     return this.api
       .post<LoginResponse, LoginRequest>('/auth/login', payload)
       .pipe(tap((result) => this.persistSession(result)));
+  }
+
+  register(payload: RegisterRequest): Observable<void> {
+    if (environment.useMockData) {
+      return of(void 0).pipe(delay(650));
+    }
+
+    return this.api.post<void, RegisterRequest>('/auth/register', payload);
   }
 
   logout(redirect = true): void {

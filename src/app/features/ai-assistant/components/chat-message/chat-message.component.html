@@ -3,12 +3,18 @@
   [class.chat-message--user]="message().role === 'user'"
   [class.chat-message--assistant]="message().role === 'assistant'"
 >
-  <div class="chat-message__meta">
-    <span>{{ message().role === 'user' ? 'You' : 'Assistant' }}</span>
-    <time>{{ formattedTime() }}</time>
+  <div class="chat-message__avatar">
+    {{ message().role === 'user' ? 'You' : 'AI' }}
   </div>
 
-  <div class="chat-message__bubble">
-    <p>{{ message().content }}</p>
+  <div class="chat-message__content">
+    <div class="chat-message__meta">
+      <span>{{ message().role === 'user' ? 'You' : 'Financist Assistant' }}</span>
+      <time>{{ formattedTime() }}</time>
+    </div>
+
+    <div class="chat-message__bubble">
+      <p>{{ message().content }}</p>
+    </div>
   </div>
 </article>
