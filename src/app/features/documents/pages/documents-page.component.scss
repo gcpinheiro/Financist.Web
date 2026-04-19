@@ -1,0 +1,34 @@
+.documents-page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.documents-page__upload {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.25rem;
+  border: 1px dashed rgba(110, 168, 254, 0.3);
+  border-radius: 1.25rem;
+  background: rgba(110, 168, 254, 0.04);
+
+  strong {
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+}
+
+.documents-page__message {
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  color: var(--color-success);
+  border: 1px solid rgba(82, 214, 161, 0.18);
+  background: rgba(82, 214, 161, 0.08);
+}

@@ -1,0 +1,26 @@
+<div class="feature-page">
+  <app-page-header
+    eyebrow="Structure"
+    title="Budget categories"
+    subtitle="Maintain a clean category system so analytics, imports, and budgets stay reliable."
+  >
+    <app-primary-button actions icon="plus" routerLink="/categories/new">New category</app-primary-button>
+  </app-page-header>
+
+  @if (loading() && !categories().length) {
+    <app-loading-state label="Loading categories..." />
+  } @else if (categories().length) {
+    <app-table-card
+      title="Active categories"
+      subtitle="Categories available for transactions, reporting, and budget mapping."
+    >
+      <app-data-table [columns]="columns" [rows]="categories()" trackByKey="id" />
+    </app-table-card>
+  } @else {
+    <app-empty-state
+      title="No categories configured"
+      description="Create categories to give transactions a meaningful reporting structure."
+      icon="categories"
+    />
+  }
+</div>

@@ -1,0 +1,38 @@
+<div class="create-page">
+  <app-page-header
+    eyebrow="Create"
+    title="Register a card"
+    subtitle="Store the operational details needed for limits, statements, and due-date visibility."
+  />
+
+  <app-section-card
+    title="Card details"
+    subtitle="These values prepare the card entity for both UI behavior and future backend syncing."
+  >
+    <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="create-page__grid">
+        <app-form-field [form]="form" controlName="name" label="Card name" placeholder="Operations Black" />
+        <app-form-field [form]="form" controlName="brand" label="Brand" placeholder="Visa" />
+        <app-form-field [form]="form" controlName="lastDigits" label="Last digits" placeholder="4821" />
+        <app-form-field [form]="form" controlName="creditLimit" label="Credit limit" type="number" />
+        <app-form-field [form]="form" controlName="availableLimit" label="Available limit" type="number" />
+        <app-form-field [form]="form" controlName="closingDay" label="Closing day" type="number" />
+        <app-form-field [form]="form" controlName="dueDay" label="Due day" type="number" />
+        <app-form-field
+          [form]="form"
+          controlName="status"
+          label="Status"
+          type="select"
+          [options]="statusOptions"
+        />
+      </div>
+
+      <div class="create-page__actions">
+        <app-secondary-button routerLink="/cards">Cancel</app-secondary-button>
+        <app-primary-button type="submit" [disabled]="saving()">
+          {{ saving() ? 'Saving...' : 'Create card' }}
+        </app-primary-button>
+      </div>
+    </form>
+  </app-section-card>
+</div>

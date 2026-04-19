@@ -1,0 +1,30 @@
+.empty-state {
+  min-height: 14rem;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.9rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.empty-state__icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: 1rem;
+  color: var(--color-primary);
+  background: rgba(55, 214, 198, 0.12);
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0;
+  max-width: 26rem;
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,43 @@
+<div class="feature-page">
+  <app-page-header
+    eyebrow="Operations"
+    title="Transactions ledger"
+    subtitle="Review cash movement, booked expenses, and incoming revenue in one streamlined ledger."
+  >
+    <app-primary-button actions icon="plus" routerLink="/transactions/new">New transaction</app-primary-button>
+  </app-page-header>
+
+  <section class="feature-page__stats">
+    <app-stat-card
+      label="Income booked"
+      [value]="incomeTotal() | currency: 'USD' : 'symbol' : '1.0-0'"
+      icon="trend"
+      change="+2 this week"
+      tone="success"
+    />
+    <app-stat-card
+      label="Expenses booked"
+      [value]="expenseTotal() | currency: 'USD' : 'symbol' : '1.0-0'"
+      icon="transactions"
+      change="4 high-priority items"
+      tone="warning"
+    />
+  </section>
+
+  @if (loading() && !transactions().length) {
+    <app-loading-state label="Loading transactions..." />
+  } @else if (transactions().length) {
+    <app-table-card
+      title="All transactions"
+      subtitle="Your latest financial activity across accounts and payment methods."
+    >
+      <app-data-table [columns]="columns" [rows]="transactions()" trackByKey="id" />
+    </app-table-card>
+  } @else {
+    <app-empty-state
+      title="No transactions yet"
+      description="Create your first transaction to start building a reliable finance timeline."
+      icon="transactions"
+    />
+  }
+</div>

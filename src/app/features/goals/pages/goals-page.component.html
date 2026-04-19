@@ -1,0 +1,26 @@
+<div class="feature-page">
+  <app-page-header
+    eyebrow="Savings"
+    title="Goals tracker"
+    subtitle="Keep target funding visible so strategic reserves and investments stay on course."
+  >
+    <app-primary-button actions icon="plus" routerLink="/goals/new">New goal</app-primary-button>
+  </app-page-header>
+
+  @if (loading() && !goals().length) {
+    <app-loading-state label="Loading goals..." />
+  } @else if (goals().length) {
+    <app-table-card
+      title="Active goals"
+      subtitle="Track progress, deadlines, and how much remains to reach each milestone."
+    >
+      <app-data-table [columns]="columns" [rows]="goals()" trackByKey="id" />
+    </app-table-card>
+  } @else {
+    <app-empty-state
+      title="No goals created"
+      description="Add savings or investment goals to keep strategic priorities visible."
+      icon="goals"
+    />
+  }
+</div>

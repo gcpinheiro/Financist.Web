@@ -1,0 +1,40 @@
+<div class="field">
+  <label class="field__label" [for]="fieldId()">{{ label() }}</label>
+
+  @switch (type()) {
+    @case ('textarea') {
+      <textarea
+        class="field__control"
+        [id]="fieldId()"
+        [rows]="rows()"
+        [placeholder]="placeholder()"
+        [formControlName]="controlName()"
+      ></textarea>
+    }
+    @case ('select') {
+      <select class="field__control" [id]="fieldId()" [formControlName]="controlName()">
+        <option value="">Select an option</option>
+        @for (option of options(); track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    }
+    @default {
+      <input
+        class="field__control"
+        [id]="fieldId()"
+        [type]="type()"
+        [placeholder]="placeholder()"
+        [autocomplete]="autocomplete()"
+        [step]="type() === 'number' ? step() : null"
+        [formControlName]="controlName()"
+      />
+    }
+  }
+
+  @if (showError()) {
+    <small class="field__error">{{ errorMessage() }}</small>
+  } @else if (hint()) {
+    <small class="field__hint">{{ hint() }}</small>
+  }
+</div>

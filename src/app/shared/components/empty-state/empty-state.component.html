@@ -1,0 +1,8 @@
+<div class="empty-state surface-card">
+  <div class="empty-state__icon">
+    <app-icon [name]="icon()" [size]="22" />
+  </div>
+  <h3>{{ title() }}</h3>
+  <p>{{ description() }}</p>
+  <ng-content />
+</div>

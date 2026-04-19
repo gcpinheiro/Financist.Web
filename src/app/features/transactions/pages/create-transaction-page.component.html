@@ -1,0 +1,71 @@
+<div class="create-page">
+  <app-page-header
+    eyebrow="Create"
+    title="Add a new transaction"
+    subtitle="Capture the movement with the right account, category, and completion status."
+  />
+
+  <app-section-card
+    title="Transaction details"
+    subtitle="Use a consistent structure now so the backend integration stays predictable later."
+  >
+    <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="create-page__grid">
+        <app-form-field
+          [form]="form"
+          controlName="description"
+          label="Description"
+          placeholder="Example: AWS monthly invoice"
+        />
+        <app-form-field
+          [form]="form"
+          controlName="type"
+          label="Type"
+          type="select"
+          [options]="typeOptions"
+        />
+        <app-form-field
+          [form]="form"
+          controlName="amount"
+          label="Amount"
+          type="number"
+          placeholder="0.00"
+        />
+        <app-form-field [form]="form" controlName="date" label="Date" type="date" />
+        <app-form-field
+          [form]="form"
+          controlName="category"
+          label="Category"
+          type="select"
+          [options]="categoryOptions()"
+        />
+        <app-form-field
+          [form]="form"
+          controlName="paymentMethod"
+          label="Payment method"
+          placeholder="Wire transfer, card, Pix..."
+        />
+        <app-form-field
+          [form]="form"
+          controlName="account"
+          label="Account"
+          placeholder="Main treasury"
+        />
+        <app-form-field
+          [form]="form"
+          controlName="status"
+          label="Status"
+          type="select"
+          [options]="statusOptions"
+        />
+      </div>
+
+      <div class="create-page__actions">
+        <app-secondary-button routerLink="/transactions">Cancel</app-secondary-button>
+        <app-primary-button type="submit" [disabled]="saving()">
+          {{ saving() ? 'Saving...' : 'Create transaction' }}
+        </app-primary-button>
+      </div>
+    </form>
+  </app-section-card>
+</div>

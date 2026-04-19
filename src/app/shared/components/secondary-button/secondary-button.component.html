@@ -1,0 +1,12 @@
+<button
+  class="button button--secondary"
+  [class.button--full]="fullWidth()"
+  [attr.type]="type()"
+  [disabled]="disabled()"
+  (click)="pressed.emit($event)"
+>
+  @if (icon()) {
+    <app-icon [name]="icon()!" [size]="18" />
+  }
+  <ng-content />
+</button>

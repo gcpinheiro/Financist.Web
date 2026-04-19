@@ -1,0 +1,29 @@
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        @for (column of columns(); track column.label) {
+          <th [class.align-end]="column.align === 'end'">{{ column.label }}</th>
+        }
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (row of rows(); track trackRow($index, row)) {
+        <tr>
+          @for (column of columns(); track column.label) {
+            <td [class.align-end]="column.align === 'end'">
+              @if (column.type === 'badge') {
+                <span class="badge" [class]="badgeClass(cellValue(row, column))">
+                  {{ formatValue(cellValue(row, column), column) }}
+                </span>
+              } @else {
+                {{ formatValue(cellValue(row, column), column) }}
+              }
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,12 @@
+<section class="section-card surface-card">
+  <header>
+    <h2>{{ title() }}</h2>
+    @if (subtitle()) {
+      <p>{{ subtitle() }}</p>
+    }
+  </header>
+
+  <div class="section-card__body">
+    <ng-content />
+  </div>
+</section>

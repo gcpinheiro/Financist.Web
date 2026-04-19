@@ -1,0 +1,35 @@
+<div class="shell" [class.shell--compact]="sidebarCompact()">
+  <div class="shell__sidebar">
+    <app-sidebar
+      [compact]="sidebarCompact()"
+      [mobileOpen]="mobileSidebarOpen()"
+      (compactToggled)="toggleSidebarMode()"
+      (navigated)="closeMobileSidebar()"
+    />
+  </div>
+
+  <button
+    class="shell__backdrop"
+    type="button"
+    [class.shell__backdrop--visible]="mobileSidebarOpen()"
+    (click)="closeMobileSidebar()"
+  ></button>
+
+  <div class="shell__main">
+    <app-topbar
+      [title]="pageTitle()"
+      [subtitle]="pageSubtitle()"
+      [userName]="userName()"
+      [userRole]="userRole()"
+      [userInitials]="userInitials()"
+      [sidebarCompact]="sidebarCompact()"
+      (menuPressed)="toggleMobileSidebar()"
+      (compactPressed)="toggleSidebarMode()"
+      (logoutPressed)="logout()"
+    />
+
+    <main class="shell__content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

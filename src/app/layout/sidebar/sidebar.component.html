@@ -1,0 +1,42 @@
+<aside class="sidebar" [class.sidebar--compact]="compact()" [class.sidebar--mobile-open]="mobileOpen()">
+  <div class="sidebar__brand">
+    <div class="sidebar__brand-mark">F</div>
+    @if (!compact()) {
+      <div>
+        <strong>Financist</strong>
+        <span>Finance cockpit</span>
+      </div>
+    }
+  </div>
+
+  <button class="sidebar__compact" type="button" (click)="compactToggled.emit()">
+    <app-icon [name]="compact() ? 'expand' : 'collapse'" [size]="18" />
+    @if (!compact()) {
+      <span>Collapse</span>
+    }
+  </button>
+
+  <nav class="sidebar__nav">
+    @for (item of navigation; track item.route) {
+      <a
+        class="sidebar__link"
+        [routerLink]="item.route"
+        routerLinkActive="is-active"
+        (click)="navigated.emit()"
+      >
+        <app-icon [name]="item.icon" [size]="18" />
+        @if (!compact()) {
+          <span>{{ item.label }}</span>
+        }
+      </a>
+    }
+  </nav>
+
+  @if (!compact()) {
+    <div class="sidebar__promo">
+      <span class="sidebar__promo-label">This month</span>
+      <strong>Cashflow is 14% ahead of plan</strong>
+      <p>Revenue outpaced spending for the third straight cycle.</p>
+    </div>
+  }
+</aside>

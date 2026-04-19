@@ -1,0 +1,23 @@
+.section-card {
+  padding: 1.4rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+header {
+  h2 {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 800;
+  }
+
+  p {
+    margin: 0.35rem 0 0;
+    color: var(--color-text-muted);
+  }
+}
+
+.section-card__body {
+  display: grid;
+  gap: 1rem;
+}

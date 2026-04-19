@@ -1,0 +1,21 @@
+<article class="stat-card surface-card" [class]="'stat-card stat-card--' + tone()">
+  <div class="stat-card__top">
+    <span>{{ label() }}</span>
+    <div class="stat-card__icon">
+      <app-icon [name]="icon()" [size]="18" />
+    </div>
+  </div>
+
+  <strong>{{ value() ?? '-' }}</strong>
+
+  @if (change() || helper()) {
+    <div class="stat-card__footer">
+      @if (change()) {
+        <span class="stat-card__change">{{ change() }}</span>
+      }
+      @if (helper()) {
+        <small>{{ helper() }}</small>
+      }
+    </div>
+  }
+</article>

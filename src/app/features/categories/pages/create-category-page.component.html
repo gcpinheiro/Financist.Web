@@ -1,0 +1,46 @@
+<div class="create-page">
+  <app-page-header
+    eyebrow="Create"
+    title="Add a category"
+    subtitle="Keep category naming, budgets, and visual identity consistent from the start."
+  />
+
+  <app-section-card
+    title="Category setup"
+    subtitle="These values will drive reporting, form options, and future backend validation."
+  >
+    <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="create-page__grid">
+        <app-form-field [form]="form" controlName="name" label="Category name" placeholder="Software" />
+        <app-form-field
+          [form]="form"
+          controlName="type"
+          label="Flow type"
+          type="select"
+          [options]="typeOptions"
+        />
+        <app-form-field
+          [form]="form"
+          controlName="budget"
+          label="Monthly budget"
+          type="number"
+          placeholder="0.00"
+        />
+        <app-form-field
+          [form]="form"
+          controlName="color"
+          label="Color token"
+          placeholder="#37d6c6"
+        />
+        <app-form-field [form]="form" controlName="icon" label="Icon label" placeholder="Grid" />
+      </div>
+
+      <div class="create-page__actions">
+        <app-secondary-button routerLink="/categories">Cancel</app-secondary-button>
+        <app-primary-button type="submit" [disabled]="saving()">
+          {{ saving() ? 'Saving...' : 'Create category' }}
+        </app-primary-button>
+      </div>
+    </form>
+  </app-section-card>
+</div>

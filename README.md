@@ -1,59 +1,202 @@
-# FinancistWeb
+# Financist Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+Financist is a production-oriented Angular 20 frontend for a finance operations dashboard. This implementation keeps the existing Angular workspace and reorganizes it into a scalable feature-based structure with a premium dark UI, reusable standalone components, Signals-driven local state, and backend-ready service boundaries.
 
-## Development server
+## Stack
 
-To start a local development server, run:
+- Angular 20
+- TypeScript
+- SCSS
+- Angular Signals
+- Standalone Components
+- Angular Router
+- HttpClient
+- SSR-capable Angular build
+- `apexcharts`
+- `ng-apexcharts`
 
-```bash
-ng serve
+## Main Decisions
+
+- The app is split into `core`, `shared`, `layout`, and `features` to keep cross-cutting concerns separate from reusable UI and route-level business areas.
+- Protected routes are wrapped by a single application shell with sidebar and topbar, while authentication lives outside that shell.
+- Feature services use Signals for frontend state and expose backend-ready patterns through `ApiService`.
+- Development mode uses mock data via `environment.development.ts`, while production mode is structured to talk to the real API.
+- Reusable UI primitives such as cards, buttons, form fields, tables, loading states, and empty states keep feature pages consistent.
+- Dashboard charts are implemented with ApexCharts and styled for the dark theme.
+
+## Folder Structure
+
+```text
+src/
+  app/
+    core/
+      api/
+      auth/
+      guards/
+      interceptors/
+    shared/
+      components/
+      data/
+      models/
+      ui/
+    layout/
+      app-shell/
+      sidebar/
+      topbar/
+    features/
+      auth/
+      dashboard/
+      transactions/
+      categories/
+      cards/
+      goals/
+      documents/
+      settings/
+  environments/
+  styles/
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Feature Coverage
 
-## Code scaffolding
+- Auth
+  - Login page
+  - Token persistence
+  - Auth guard
+  - JWT interceptor
+  - Logout flow
+- Dashboard
+  - KPI cards
+  - Expense donut chart
+  - Income vs expenses line chart
+  - Balance trend area chart
+  - Recent transactions table
+- Transactions
+  - Listing page
+  - Creation form UI
+- Categories
+  - Listing page
+  - Creation form UI
+- Cards
+  - Listing page
+  - Creation form UI
+- Goals
+  - Listing page
+  - Creation form UI
+- Documents
+  - Upload UI
+  - Import history table
+- Settings
+  - Placeholder settings layout
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Installed Dependencies
+
+Core project dependencies already present:
+
+- `@angular/*`
+- `rxjs`
+- `express`
+
+Added for this implementation:
+
+- `apexcharts`
+- `ng-apexcharts`
+
+## Environment Configuration
+
+Environment files live in `src/environments`.
+
+- `environment.ts`
+  - production-oriented defaults
+  - `apiUrl: 'http://localhost:5000/api/v1'`
+  - `useMockData: false`
+- `environment.development.ts`
+  - local development defaults
+  - `apiUrl: 'http://localhost:5000/api/v1'`
+  - `useMockData: true`
+
+`angular.json` is configured to replace `environment.ts` with `environment.development.ts` when running the development build.
+
+## How To Run Locally
+
+1. Install dependencies:
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. Start the Angular dev server:
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+3. Open:
 
-To build the project run:
+```text
+http://localhost:4200
+```
+
+4. The development environment uses mock data by default, so the app is usable immediately without the backend running.
+
+## Build
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The project was validated with a successful production build.
 
-## Running unit tests
+## Backend Integration
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+The frontend is prepared for a .NET backend using:
 
-```bash
-ng test
-```
+- Base API URL: `http://localhost:5000/api/v1`
+- Centralized API wrapper: `src/app/core/api/api.service.ts`
+- Auth token storage: `src/app/core/auth/token-storage.service.ts`
+- Auth service: `src/app/core/auth/auth.service.ts`
+- JWT header injection: `src/app/core/interceptors/auth.interceptor.ts`
+- Error interception and unauthorized redirect handling: `src/app/core/interceptors/api-error.interceptor.ts`
 
-## Running end-to-end tests
+To connect to the real backend during local development:
 
-For end-to-end (e2e) testing, run:
+1. Open `src/environments/environment.development.ts`
+2. Set `useMockData` to `false`
+3. Confirm the backend is running on `http://localhost:5000`
+4. Adjust endpoint implementations in feature services as backend contracts evolve
 
-```bash
-ng e2e
-```
+## Authentication Notes
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- The current development experience uses a mock login response when `useMockData` is enabled.
+- Session data is stored in `localStorage`.
+- Protected routes redirect unauthenticated users to `/auth/login`.
+- The structure is ready for a real JWT-based backend login endpoint.
 
-## Additional Resources
+## UI System
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Reusable shared components include:
+
+- `app-shell`
+- `sidebar`
+- `topbar`
+- `stat-card`
+- `chart-card`
+- `table-card`
+- `page-header`
+- `primary-button`
+- `secondary-button`
+- `form-field`
+- `data-table`
+- `loading-state`
+- `empty-state`
+- `section-card`
+
+Global visual tokens are defined in:
+
+- `src/styles/_tokens.scss`
+- `src/styles/_base.scss`
+
+## Notes For Future Expansion
+
+- Feature services are a good place to replace mock sources with real API calls as backend endpoints are finalized.
+- A dedicated notification/toast system can be added later without changing feature page structure.
+- If backend complexity grows significantly, this structure can still absorb a stronger state strategy without refactoring the layout and shared UI layers.

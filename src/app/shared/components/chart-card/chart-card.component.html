@@ -1,0 +1,16 @@
+<section class="chart-card surface-card">
+  <header>
+    <div>
+      <h2>{{ title() }}</h2>
+      @if (subtitle()) {
+        <p>{{ subtitle() }}</p>
+      }
+    </div>
+
+    <ng-content select="[meta]" />
+  </header>
+
+  <div class="chart-card__body">
+    <ng-content />
+  </div>
+</section>

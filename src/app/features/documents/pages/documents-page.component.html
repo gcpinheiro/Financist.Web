@@ -1,0 +1,45 @@
+<div class="documents-page">
+  <app-page-header
+    eyebrow="Imports"
+    title="Documents and uploads"
+    subtitle="Centralize statements, invoices, and import-ready files before connecting the backend workflow."
+  />
+
+  <app-section-card
+    title="Upload zone"
+    subtitle="Drop CSVs, PDFs, or statement exports here to simulate the import flow."
+  >
+    <div class="documents-page__upload">
+      <div>
+        <strong>Bring in source files for reconciliation</strong>
+        <p>Use the upload action below to queue new statements and import batches.</p>
+      </div>
+
+      <input #fileInput type="file" hidden multiple (change)="onFilesSelected($event)" />
+      <app-primary-button icon="upload" [disabled]="uploading()" (pressed)="fileInput.click()">
+        {{ uploading() ? 'Uploading...' : 'Upload files' }}
+      </app-primary-button>
+    </div>
+
+    @if (lastUploadMessage()) {
+      <div class="documents-page__message">{{ lastUploadMessage() }}</div>
+    }
+  </app-section-card>
+
+  @if (loading() && !documents().length) {
+    <app-loading-state label="Loading imports..." />
+  } @else if (documents().length) {
+    <app-table-card
+      title="Import history"
+      subtitle="Recently uploaded documents and their current processing state."
+    >
+      <app-data-table [columns]="columns" [rows]="documents()" trackByKey="id" />
+    </app-table-card>
+  } @else {
+    <app-empty-state
+      title="No documents uploaded"
+      description="Start by uploading bank statements or transaction exports to populate the queue."
+      icon="documents"
+    />
+  }
+</div>

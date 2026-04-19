@@ -1,0 +1,121 @@
+<div class="dashboard-page">
+  <app-page-header
+    eyebrow="Overview"
+    title="Financial command center"
+    subtitle="A high-level view of balances, category pressure, and how this month is unfolding."
+  />
+
+  @if (loading() && !summary()) {
+    <app-loading-state label="Building your dashboard..." />
+  } @else if (summary(); as summaryValue) {
+    <section class="dashboard-page__stats">
+      <app-stat-card
+        label="Total Balance"
+        [value]="summaryValue.totalBalance | currency: 'USD' : 'symbol' : '1.0-0'"
+        icon="wallet"
+        change="+8.4%"
+        helper="vs last month"
+        tone="primary"
+      />
+      <app-stat-card
+        label="Monthly Income"
+        [value]="summaryValue.monthlyIncome | currency: 'USD' : 'symbol' : '1.0-0'"
+        icon="trend"
+        change="+12.1%"
+        helper="booked this cycle"
+        tone="success"
+      />
+      <app-stat-card
+        label="Monthly Expenses"
+        [value]="summaryValue.monthlyExpenses | currency: 'USD' : 'symbol' : '1.0-0'"
+        icon="transactions"
+        change="-3.2%"
+        helper="under expected run-rate"
+        tone="warning"
+      />
+      <app-stat-card
+        label="Goals Progress"
+        [value]="summaryValue.goalsProgress + '%'"
+        icon="target"
+        change="2 goals on track"
+        helper="savings momentum"
+        tone="info"
+      />
+    </section>
+
+    <section class="dashboard-page__charts">
+      <app-chart-card
+        title="Income vs expenses"
+        subtitle="Monitor the spread between inflows and outflows across recent months."
+      >
+        @if (isBrowser) {
+          <apx-chart
+            [series]="cashflowSeries()"
+            [chart]="lineChart"
+            [xaxis]="cashflowXAxis()"
+            [stroke]="lineStroke"
+            [colors]="['#37d6c6', '#ff7a90']"
+            [grid]="grid"
+            [yaxis]="yAxis"
+            [tooltip]="{ theme: 'dark' }"
+          />
+        } @else {
+          <app-loading-state label="Preparing chart..." />
+        }
+      </app-chart-card>
+
+      <app-chart-card
+        title="Expenses by category"
+        subtitle="See which categories are taking the largest share of spend."
+      >
+        @if (isBrowser) {
+          <apx-chart
+            [series]="donutSeries()"
+            [chart]="donutChart"
+            [labels]="donutLabels()"
+            [colors]="donutColors()"
+            [legend]="donutLegend"
+            [plotOptions]="donutPlotOptions"
+            [dataLabels]="{ enabled: false }"
+          />
+        } @else {
+          <app-loading-state label="Preparing chart..." />
+        }
+      </app-chart-card>
+    </section>
+
+    <section class="dashboard-page__detail">
+      <app-chart-card
+        title="Balance trend"
+        subtitle="Follow reserve accumulation and liquidity direction over time."
+      >
+        @if (isBrowser) {
+          <apx-chart
+            [series]="balanceSeries()"
+            [chart]="areaChart"
+            [xaxis]="balanceXAxis()"
+            [stroke]="areaStroke"
+            [fill]="gradientFill"
+            [colors]="['#6ea8fe']"
+            [grid]="grid"
+            [yaxis]="yAxis"
+            [tooltip]="{ theme: 'dark' }"
+          />
+        } @else {
+          <app-loading-state label="Preparing chart..." />
+        }
+      </app-chart-card>
+
+      <app-table-card
+        title="Recent transactions"
+        subtitle="Latest booked movement across your finance workspace."
+      >
+        <app-data-table
+          [columns]="recentTransactionsColumns"
+          [rows]="summaryValue.recentTransactions"
+          trackByKey="id"
+        />
+      </app-table-card>
+    </section>
+  }
+</div>

@@ -1,0 +1,89 @@
+<div class="login-page">
+  <section class="login-page__hero surface-card">
+    <div class="login-page__hero-badge">
+      <span>Premium finance command center</span>
+    </div>
+
+    <div class="login-page__hero-copy">
+      <h1>Control cash, cards, budgets, and imports from one dark finance cockpit.</h1>
+      <p>
+        Financist is designed for teams that need clarity across balances, spending, goals, and
+        operational flows without losing speed.
+      </p>
+    </div>
+
+    <div class="login-page__highlights">
+      <article>
+        <app-icon name="wallet" [size]="20" />
+        <div>
+          <strong>Unified balances</strong>
+          <span>Monitor income, expenses, and reserves in one timeline.</span>
+        </div>
+      </article>
+      <article>
+        <app-icon name="trend" [size]="20" />
+        <div>
+          <strong>Live performance insight</strong>
+          <span>See cashflow trends and spending pressure in seconds.</span>
+        </div>
+      </article>
+      <article>
+        <app-icon name="documents" [size]="20" />
+        <div>
+          <strong>Import-ready workflows</strong>
+          <span>Upload statements and prepare backend-connected reconciliation.</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="login-page__panel surface-card">
+    <div class="login-page__panel-header">
+      <div class="login-page__brand">
+        <div class="login-page__brand-mark">F</div>
+        <div>
+          <strong>Financist</strong>
+          <span>Sign in to continue</span>
+        </div>
+      </div>
+
+      <h2>Welcome back</h2>
+      <p>Use your workspace credentials to access the dashboard and your financial operations.</p>
+    </div>
+
+    <form class="login-page__form" [formGroup]="form" (ngSubmit)="submit()">
+      <app-form-field
+        [form]="form"
+        controlName="email"
+        label="Email"
+        placeholder="finance@company.com"
+        type="email"
+        autocomplete="email"
+      />
+
+      <app-form-field
+        [form]="form"
+        controlName="password"
+        label="Password"
+        placeholder="Enter your password"
+        type="password"
+        autocomplete="current-password"
+      />
+
+      @if (errorMessage()) {
+        <div class="login-page__error">{{ errorMessage() }}</div>
+      }
+
+      <div class="login-page__actions">
+        <app-primary-button type="submit" [fullWidth]="true" [disabled]="loading()">
+          {{ loading() ? 'Signing in...' : 'Open dashboard' }}
+        </app-primary-button>
+        <app-secondary-button [fullWidth]="true">Secure workspace</app-secondary-button>
+      </div>
+    </form>
+
+    <div class="login-page__footer">
+      <span>Mock-ready default credentials are pre-filled for local development.</span>
+    </div>
+  </section>
+</div>

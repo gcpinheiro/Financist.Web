@@ -1,0 +1,26 @@
+<div class="feature-page">
+  <app-page-header
+    eyebrow="Payments"
+    title="Cards management"
+    subtitle="Keep limits, due dates, and available credit visible across every registered card."
+  >
+    <app-primary-button actions icon="plus" routerLink="/cards/new">New card</app-primary-button>
+  </app-page-header>
+
+  @if (loading() && !cards().length) {
+    <app-loading-state label="Loading cards..." />
+  } @else if (cards().length) {
+    <app-table-card
+      title="Registered cards"
+      subtitle="Cards mapped to your workspace for spending, statement imports, and scheduling."
+    >
+      <app-data-table [columns]="columns" [rows]="cards()" trackByKey="id" />
+    </app-table-card>
+  } @else {
+    <app-empty-state
+      title="No cards registered"
+      description="Add cards to track available limit, due dates, and payment obligations."
+      icon="cards"
+    />
+  }
+</div>
