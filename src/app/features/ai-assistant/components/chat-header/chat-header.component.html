@@ -1,0 +1,14 @@
+<header class="chat-header surface-card">
+  <div class="chat-header__copy">
+    <div class="chat-header__icon">
+      <app-icon name="assistant" [size]="20" />
+    </div>
+    <div>
+      <span class="chat-header__eyebrow">AI Workspace</span>
+      <h2>Financist Assistant</h2>
+      <p>Ask for context, summaries, and guided next steps inside the dashboard.</p>
+    </div>
+  </div>
+
+  <app-secondary-button icon="logout" (pressed)="clearPressed.emit()">Clear chat</app-secondary-button>
+</header>

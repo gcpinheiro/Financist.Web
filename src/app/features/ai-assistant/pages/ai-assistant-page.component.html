@@ -1,0 +1,13 @@
+<div class="ai-assistant-page">
+  <app-page-header
+    eyebrow="Assistant"
+    title="AI copilot"
+    subtitle="A modular chat foundation prepared for backend-connected financial assistance inside Financist."
+  />
+
+  <app-chat-header (clearPressed)="clearConversation()" />
+
+  <app-chat-container [messages]="messages()" [loading]="loading()" />
+
+  <app-chat-input [loading]="loading()" (messageSubmitted)="sendMessage($event)" />
+</div>

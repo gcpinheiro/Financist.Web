@@ -70,6 +70,11 @@ src/
   - Income vs expenses line chart
   - Balance trend area chart
   - Recent transactions table
+- AI Assistant
+  - Chat page
+  - Signal-based conversation state
+  - Modular chat components
+  - Backend-ready request/response service
 - Transactions
   - Listing page
   - Creation form UI

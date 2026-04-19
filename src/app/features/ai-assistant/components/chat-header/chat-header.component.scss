@@ -1,0 +1,44 @@
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.2rem 1.35rem;
+  flex-wrap: wrap;
+}
+
+.chat-header__copy {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  h2 {
+    margin: 0;
+    font: 700 1.15rem / 1.1 var(--font-display);
+  }
+
+  p {
+    margin: 0.4rem 0 0;
+    color: var(--color-text-muted);
+  }
+}
+
+.chat-header__icon {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 1rem;
+  color: #061118;
+  background: linear-gradient(135deg, #37d6c6, #83f1d2);
+}
+
+.chat-header__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

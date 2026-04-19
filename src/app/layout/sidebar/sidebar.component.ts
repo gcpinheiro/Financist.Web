@@ -18,6 +18,7 @@ export class SidebarComponent {
 
   protected readonly navigation: NavigationItem[] = [
     { label: 'Dashboard', route: '/dashboard', icon: 'dashboard' },
+    { label: 'AI Assistant', route: '/ai-assistant', icon: 'assistant' },
     { label: 'Transactions', route: '/transactions', icon: 'transactions' },
     { label: 'Categories', route: '/categories', icon: 'categories' },
     { label: 'Cards', route: '/cards', icon: 'cards' },

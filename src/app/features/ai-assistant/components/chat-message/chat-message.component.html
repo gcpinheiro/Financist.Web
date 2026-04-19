@@ -1,0 +1,14 @@
+<article
+  class="chat-message"
+  [class.chat-message--user]="message().role === 'user'"
+  [class.chat-message--assistant]="message().role === 'assistant'"
+>
+  <div class="chat-message__meta">
+    <span>{{ message().role === 'user' ? 'You' : 'Assistant' }}</span>
+    <time>{{ formattedTime() }}</time>
+  </div>
+
+  <div class="chat-message__bubble">
+    <p>{{ message().content }}</p>
+  </div>
+</article>

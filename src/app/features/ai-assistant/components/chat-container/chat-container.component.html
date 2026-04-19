@@ -1,0 +1,15 @@
+<section class="chat-container surface-card">
+  <div #scrollHost class="chat-container__scroll">
+    @for (message of messages(); track message.id) {
+      <app-chat-message [message]="message" />
+    }
+
+    @if (loading()) {
+      <div class="chat-container__typing">
+        <div class="chat-container__typing-dot"></div>
+        <div class="chat-container__typing-dot"></div>
+        <div class="chat-container__typing-dot"></div>
+      </div>
+    }
+  </div>
+</section>

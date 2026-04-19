@@ -1,0 +1,17 @@
+<form class="chat-input surface-card" (ngSubmit)="submit()">
+  <textarea
+    [ngModel]="draft()"
+    (ngModelChange)="draft.set($event)"
+    name="message"
+    rows="3"
+    placeholder="Ask the assistant about spending trends, cashflow, goals, or next actions..."
+    [disabled]="loading()"
+  ></textarea>
+
+  <div class="chat-input__actions">
+    <span>{{ loading() ? 'Assistant is thinking...' : 'Enter your message to continue.' }}</span>
+    <app-primary-button type="submit" icon="assistant" [disabled]="loading() || !draft().trim()">
+      {{ loading() ? 'Sending...' : 'Send message' }}
+    </app-primary-button>
+  </div>
+</form>

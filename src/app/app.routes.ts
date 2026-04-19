@@ -46,6 +46,17 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'ai-assistant',
+        loadComponent: () =>
+          import('./features/ai-assistant/pages/ai-assistant-page.component').then(
+            (component) => component.AiAssistantPageComponent
+          ),
+        data: {
+          title: 'AI Assistant',
+          subtitle: 'Ask for financial context, summaries, and next-step guidance from one workspace chat.'
+        }
+      },
+      {
         path: 'transactions',
         data: {
           title: 'Transactions',
