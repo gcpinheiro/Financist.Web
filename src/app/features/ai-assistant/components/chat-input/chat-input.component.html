@@ -1,6 +1,6 @@
 <form class="chat-input" (ngSubmit)="submit()">
   <div class="chat-input__shell">
-    <label class="chat-input__label" for="assistant-message">Message the Financist Assistant</label>
+    <label class="chat-input__label" for="assistant-message">Mensagem para o assistente</label>
 
     <textarea
       #textarea
@@ -10,20 +10,20 @@
       (keydown)="handleKeydown($event)"
       name="message"
       rows="1"
-      placeholder="Message Financist Assistant..."
+      placeholder="Digite sua pergunta..."
       [disabled]="loading()"
     ></textarea>
 
     <div class="chat-input__actions">
       <div class="chat-input__hint">
         <span class="chat-input__helper">
-          {{ loading() ? 'Assistant is thinking...' : 'Press Enter to send. Use Shift + Enter for a new line.' }}
+          {{ loading() ? 'Pensando...' : 'Pressione Enter para enviar. Use Shift + Enter para quebrar linha.' }}
         </span>
       </div>
 
       <button class="chat-input__submit" type="submit" [disabled]="loading() || !draft().trim()">
         <app-icon name="assistant" [size]="18" />
-        <span>{{ loading() ? 'Thinking...' : 'Send' }}</span>
+        <span>{{ loading() ? 'Pensando...' : 'Enviar' }}</span>
       </button>
     </div>
   </div>

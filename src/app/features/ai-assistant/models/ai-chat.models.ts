@@ -1,10 +1,8 @@
-import { ChatMessage } from './chat-message.model';
-
-export interface AiChatRequest {
+export interface ChatRequest {
   message: string;
-  history: ChatMessage[];
+  systemPrompt?: string;
 }
 
-export interface AiChatResponse {
-  message: ChatMessage;
+export interface ChatResponse {
+  content: string;
 }

@@ -37,12 +37,6 @@ export class LoginPageComponent {
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
-  constructor() {
-    if (this.authService.isAuthenticated()) {
-      void this.router.navigateByUrl('/dashboard');
-    }
-  }
-
   protected submit(): void {
     if (this.form.invalid || this.loading()) {
       this.form.markAllAsTouched();

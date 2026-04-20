@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { EMPTY } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { AiAssistantService } from '../ai-assistant.service';
 import { ChatContainerComponent } from '../components/chat-container/chat-container.component';
 import { ChatHeaderComponent } from '../components/chat-header/chat-header.component';
@@ -20,7 +22,15 @@ export class AiAssistantPageComponent {
   protected readonly loading = this.aiAssistantService.loading;
 
   protected sendMessage(content: string): void {
-    this.aiAssistantService.sendMessage(content).subscribe();
+    this.aiAssistantService
+      .sendMessage(content)
+      .pipe(
+        catchError(() => {
+          this.aiAssistantService.handleError();
+          return EMPTY;
+        })
+      )
+      .subscribe();
   }
 
   protected clearConversation(): void {
