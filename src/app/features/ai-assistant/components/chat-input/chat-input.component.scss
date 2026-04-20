@@ -2,7 +2,7 @@
   position: relative;
   z-index: 1;
   padding: 0 1.5rem 1.5rem;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.92) 28%, rgba(15, 23, 42, 0.98) 100%);
+  background: linear-gradient(180deg, transparent 0%, var(--color-bg-elevated) 28%, var(--color-bg) 100%);
   backdrop-filter: blur(20px);
 }
 
@@ -12,7 +12,7 @@
   padding: 1rem 1rem 0.95rem;
   border: 1px solid rgba(148, 163, 184, 0.12);
   border-radius: 1.45rem;
-  background: rgba(24, 34, 53, 0.96);
+  background: var(--color-surface-muted);
   box-shadow: 0 14px 30px rgba(2, 6, 23, 0.16);
 }
 

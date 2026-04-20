@@ -1,4 +1,5 @@
 import {
+  APP_INITIALIZER,
   ApplicationConfig,
   LOCALE_ID,
   provideBrowserGlobalErrorListeners,
@@ -18,6 +19,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { apiErrorInterceptor } from './core/interceptors/api-error.interceptor';
 import localePt from '@angular/common/locales/pt';
+import { ThemeService } from './core/theme/theme.service';
 
 registerLocaleData(localePt);
 
@@ -28,6 +30,12 @@ export const appConfig: ApplicationConfig = {
     {
       provide: LOCALE_ID,
       useValue: 'pt-BR'
+    },
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [ThemeService],
+      useFactory: (themeService: ThemeService) => () => themeService.initialize()
     },
     provideRouter(
       routes,

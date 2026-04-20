@@ -7,6 +7,33 @@
 
   <section class="settings-page__grid">
     <app-section-card
+      title="Tema"
+      subtitle="Escolha o tema da interface. O modo claro e o padrao do produto."
+    >
+      <div class="settings-page__theme-options">
+        <button
+          type="button"
+          class="settings-page__theme-option"
+          [class.settings-page__theme-option--active]="currentTheme() === 'light'"
+          (click)="setTheme('light')"
+        >
+          <strong>Claro</strong>
+          <span>Visual leve para uso diario. Este e o tema padrao.</span>
+        </button>
+
+        <button
+          type="button"
+          class="settings-page__theme-option"
+          [class.settings-page__theme-option--active]="currentTheme() === 'dark'"
+          (click)="setTheme('dark')"
+        >
+          <strong>Escuro</strong>
+          <span>Reduce brilho e destaca informacoes em ambientes com pouca luz.</span>
+        </button>
+      </div>
+    </app-section-card>
+
+    <app-section-card
       title="Perfil e conta"
       subtitle="Use esta area para dados da organizacao, fuso horario e moeda padrao."
     >

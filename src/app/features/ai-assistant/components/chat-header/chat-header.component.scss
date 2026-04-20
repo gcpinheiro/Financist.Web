@@ -8,7 +8,7 @@
   position: relative;
   z-index: 1;
   border-bottom: 1px solid rgba(148, 163, 184, 0.08);
-  background: rgba(24, 34, 53, 0.76);
+  background: color-mix(in srgb, var(--color-surface-muted) 82%, transparent);
   backdrop-filter: blur(18px);
 }
 
@@ -39,7 +39,7 @@
   flex: 0 0 auto;
   border-radius: 1.15rem;
   color: var(--color-text);
-  background: linear-gradient(180deg, rgba(39, 52, 73, 0.95), rgba(30, 41, 59, 0.95));
+  background: linear-gradient(180deg, var(--color-surface-hover), var(--color-surface-strong));
   border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
@@ -69,7 +69,7 @@
   border: 1px solid rgba(148, 163, 184, 0.14);
   border-radius: 999px;
   color: var(--color-text-muted);
-  background: rgba(19, 29, 49, 0.86);
+  background: var(--color-surface-muted);
   font-size: 0.84rem;
   font-weight: 700;
 }

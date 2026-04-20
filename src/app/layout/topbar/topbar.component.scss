@@ -40,7 +40,7 @@
   border: 1px solid var(--color-border-strong);
   border-radius: 999px;
   color: var(--color-text-soft);
-  background: rgba(19, 29, 49, 0.9);
+  background: var(--color-surface-muted);
 
   &:focus-within {
     border-color: rgba(59, 130, 246, 0.42);
@@ -65,7 +65,7 @@
   border: 1px solid var(--color-border-strong);
   border-radius: 999px;
   color: var(--color-text-muted);
-  background: rgba(19, 29, 49, 0.9);
+  background: var(--color-surface-muted);
   transition:
     color 160ms ease,
     border-color 160ms ease,
@@ -74,7 +74,7 @@
   &:hover {
     color: var(--color-text);
     border-color: rgba(148, 163, 184, 0.24);
-    background: rgba(39, 52, 73, 0.82);
+    background: var(--color-surface-hover);
   }
 }
 
@@ -117,7 +117,7 @@
   border-radius: 999px;
   color: var(--color-text);
   font-weight: 800;
-  background: linear-gradient(180deg, rgba(39, 52, 73, 0.95), rgba(30, 41, 59, 0.95));
+  background: linear-gradient(180deg, var(--color-surface-hover), var(--color-surface-strong));
   border: 1px solid rgba(148, 163, 184, 0.12);
 }
 

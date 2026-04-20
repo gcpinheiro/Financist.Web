@@ -12,7 +12,7 @@
   place-items: center;
   border-radius: 1rem;
   border: 1px solid rgba(148, 163, 184, 0.12);
-  background: rgba(19, 29, 49, 0.9);
+  background: var(--color-surface-muted);
   color: var(--color-text-muted);
   font-size: 0.76rem;
   font-weight: 800;
@@ -52,11 +52,11 @@
 .chat-message--assistant {
   .chat-message__avatar {
     color: var(--color-text-muted);
-    background: rgba(19, 29, 49, 0.9);
+    background: var(--color-surface-muted);
   }
 
   .chat-message__bubble {
-    background: rgba(24, 34, 53, 0.9);
+    background: var(--color-surface-muted);
   }
 }
 
@@ -71,7 +71,7 @@
     order: 2;
     color: var(--color-text);
     border-color: rgba(59, 130, 246, 0.16);
-    background: rgba(39, 52, 73, 0.96);
+    background: var(--color-surface-hover);
   }
 
   .chat-message__content {
@@ -81,7 +81,7 @@
 
   .chat-message__bubble {
     color: var(--color-text);
-    background: rgba(39, 52, 73, 0.96);
+    background: var(--color-surface-hover);
     border-color: rgba(59, 130, 246, 0.16);
     border-bottom-right-radius: 0.45rem;
   }

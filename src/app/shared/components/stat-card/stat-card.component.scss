@@ -1,6 +1,6 @@
 .stat-card {
   --stat-accent: var(--color-primary);
-  --stat-surface: rgba(39, 52, 73, 0.52);
+  --stat-surface: var(--color-surface-hover);
   padding: 1.4rem;
   display: grid;
   gap: 1.25rem;
@@ -54,7 +54,7 @@ strong {
 
 .stat-card--neutral {
   --stat-accent: var(--color-primary);
-  --stat-surface: rgba(226, 232, 240, 0.06);
+  --stat-surface: var(--color-surface-hover);
 }
 
 .stat-card--success {

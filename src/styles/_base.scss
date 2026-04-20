@@ -1,6 +1,10 @@
 html {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 body {
@@ -25,7 +29,7 @@ input,
 select,
 textarea {
   font: inherit;
-  color-scheme: dark;
+  color-scheme: inherit;
 }
 
 button {
