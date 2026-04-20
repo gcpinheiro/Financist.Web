@@ -1,42 +1,42 @@
 <div class="dashboard-page">
   <app-page-header
-    eyebrow="Overview"
-    title="Financial command center"
-    subtitle="A high-level view of balances, ledger activity, and goal progress based on the live API."
+    eyebrow="Resumo"
+    title="Visao financeira do dia"
+    subtitle="Um panorama de saldos, movimentacoes recentes e andamento das metas."
   />
 
   @if (loading() && !summary()) {
-    <app-loading-state label="Building your dashboard..." />
+    <app-loading-state label="Montando sua visao geral..." />
   } @else if (summary(); as summaryValue) {
     <section class="dashboard-page__stats">
       <app-stat-card
-        label="Balance"
+        label="Saldo total"
         [value]="summaryValue.balance | currency: 'USD' : 'symbol' : '1.0-0'"
         icon="wallet"
-        helper="Net result from recorded income and expenses"
-        tone="primary"
+        helper="Resultado acumulado entre entradas e saidas"
+        tone="neutral"
       />
       <app-stat-card
-        label="Total income"
+        label="Receitas"
         [value]="summaryValue.totalIncome | currency: 'USD' : 'symbol' : '1.0-0'"
         icon="trend"
-        [change]="summaryValue.transactionCount + ' transactions'"
-        helper="Captured in the current ledger"
+        [change]="summaryValue.transactionCount + ' lancamentos'"
+        helper="Entradas registradas no periodo"
         tone="success"
       />
       <app-stat-card
-        label="Total expenses"
+        label="Despesas"
         [value]="summaryValue.totalExpenses | currency: 'USD' : 'symbol' : '1.0-0'"
         icon="transactions"
-        helper="Current outflow recorded by the API"
-        tone="warning"
+        helper="Saidas registradas no periodo"
+        tone="danger"
       />
       <app-stat-card
-        label="Goals tracked"
+        label="Metas acompanhadas"
         [value]="summaryValue.goalCount.toString()"
         icon="target"
-        [change]="summaryValue.averageGoalProgress + '% avg progress'"
-        helper="Across all active goals"
+        [change]="summaryValue.averageGoalProgress + '% de progresso medio'"
+        helper="Entre todas as metas ativas"
         tone="info"
       />
     </section>
@@ -44,8 +44,8 @@
     <section class="dashboard-page__detail">
       @if (recentTransactions().length) {
         <app-table-card
-          title="Recent transactions"
-          subtitle="Latest ledger entries pulled from the transactions endpoint."
+          title="Transacoes recentes"
+          subtitle="Ultimos lancamentos recebidos na sua linha do tempo financeira."
         >
           <app-data-table
             [columns]="recentTransactionsColumns"
@@ -55,23 +55,23 @@
         </app-table-card>
       } @else {
         <app-empty-state
-          title="No transactions returned"
-          description="Create transactions or connect data so the dashboard can show live ledger activity."
+          title="Nenhuma transacao encontrada"
+          description="Cadastre movimentacoes para ver a atividade recente aqui."
           icon="transactions"
         />
       }
 
       @if (goalSnapshot().length) {
         <app-table-card
-          title="Goal snapshot"
-          subtitle="Progress summary built from the goals endpoint."
+          title="Andamento das metas"
+          subtitle="Resumo do progresso atual para acompanhar reservas e objetivos."
         >
           <app-data-table [columns]="goalColumns" [rows]="goalSnapshot()" trackByKey="id" />
         </app-table-card>
       } @else {
         <app-empty-state
-          title="No goals returned"
-          description="Create a goal to populate progress insights on the dashboard."
+          title="Nenhuma meta cadastrada"
+          description="Crie uma meta para acompanhar progresso e prioridade nesta visao."
           icon="goals"
         />
       }

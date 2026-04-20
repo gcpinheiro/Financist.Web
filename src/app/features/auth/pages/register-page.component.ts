@@ -54,7 +54,7 @@ export class RegisterPageComponent {
       },
       error: () => {
         this.loading.set(false);
-        this.errorMessage.set('We could not create your account. Please review the information and try again.');
+        this.errorMessage.set('Nao foi possivel criar sua conta. Revise os dados e tente novamente.');
       }
     });
   }

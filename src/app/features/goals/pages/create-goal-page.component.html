@@ -1,27 +1,27 @@
 <div class="create-page">
   <app-page-header
-    eyebrow="Create"
-    title="Create a savings goal"
-    subtitle="Map the target, initial amount, and currency so the payload matches the goals endpoint."
+    eyebrow="Cadastro"
+    title="Nova meta"
+    subtitle="Defina o objetivo, o valor inicial e a moeda para acompanhar a evolucao."
   />
 
   <app-section-card
-    title="Goal configuration"
-    subtitle="The current API accepts goal name, optional description, target amount, currency, and initial amount."
+    title="Configuracao da meta"
+    subtitle="Nome, descricao, valor alvo, moeda e valor inicial para o acompanhamento."
   >
     <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="create-page__grid">
-        <app-form-field [form]="form" controlName="name" label="Goal name" placeholder="Emergency reserve" />
-        <app-form-field [form]="form" controlName="description" label="Description" type="textarea" placeholder="Optional context for this goal" />
-        <app-form-field [form]="form" controlName="targetAmount" label="Target amount" type="number" />
-        <app-form-field [form]="form" controlName="currency" label="Currency" placeholder="USD" />
-        <app-form-field [form]="form" controlName="initialAmount" label="Initial amount" type="number" />
+        <app-form-field [form]="form" controlName="name" label="Nome da meta" placeholder="Reserva de emergencia" />
+        <app-form-field [form]="form" controlName="description" label="Descricao" type="textarea" placeholder="Contexto opcional para esta meta" />
+        <app-form-field [form]="form" controlName="targetAmount" label="Valor objetivo" type="number" />
+        <app-form-field [form]="form" controlName="currency" label="Moeda" placeholder="USD" />
+        <app-form-field [form]="form" controlName="initialAmount" label="Valor inicial" type="number" />
       </div>
 
       <div class="create-page__actions">
-        <app-secondary-button routerLink="/goals">Cancel</app-secondary-button>
+        <app-secondary-button routerLink="/goals">Cancelar</app-secondary-button>
         <app-primary-button type="submit" [disabled]="saving()">
-          {{ saving() ? 'Saving...' : 'Create goal' }}
+          {{ saving() ? 'Salvando...' : 'Criar meta' }}
         </app-primary-button>
       </div>
     </form>

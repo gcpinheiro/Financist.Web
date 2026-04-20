@@ -4,8 +4,9 @@
   grid-template-rows: auto auto 1fr auto;
   gap: 1.15rem;
   padding: 1.35rem 1rem;
-  background: linear-gradient(180deg, rgba(10, 17, 30, 0.98), rgba(7, 12, 22, 0.92));
+  background: linear-gradient(180deg, rgba(23, 33, 51, 0.98), rgba(15, 23, 42, 0.98));
   border-right: 1px solid var(--color-border);
+  box-shadow: 18px 0 30px rgba(2, 6, 23, 0.1);
 }
 
 .sidebar__brand {
@@ -30,10 +31,11 @@
   display: grid;
   place-items: center;
   border-radius: 1rem;
-  color: #061118;
+  color: var(--color-text);
   font: 800 1.1rem / 1 var(--font-display);
-  background: linear-gradient(135deg, #37d6c6, #83f1d2);
-  box-shadow: 0 18px 40px rgba(55, 214, 198, 0.22);
+  background: linear-gradient(180deg, rgba(39, 52, 73, 0.95), rgba(30, 41, 59, 0.95));
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.16);
 }
 
 .sidebar__compact,
@@ -44,12 +46,13 @@
   gap: 0.85rem;
   min-height: 3rem;
   padding: 0.75rem 0.9rem;
-  border: 0;
+  border: 1px solid transparent;
   border-radius: 1rem;
   color: var(--color-text-muted);
   background: transparent;
   transition:
     color 160ms ease,
+    border-color 160ms ease,
     background 160ms ease,
     transform 160ms ease;
 }
@@ -58,12 +61,13 @@
 .sidebar__link:hover,
 .sidebar__link.is-active {
   color: var(--color-text);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(39, 52, 73, 0.7);
   transform: translateX(2px);
 }
 
 .sidebar__link.is-active {
-  box-shadow: inset 0 0 0 1px rgba(110, 168, 254, 0.18);
+  border-color: rgba(59, 130, 246, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .sidebar__nav {
@@ -75,13 +79,13 @@
 .sidebar__promo {
   padding: 1rem;
   border-radius: 1.25rem;
-  background: linear-gradient(180deg, rgba(26, 163, 147, 0.18), rgba(110, 168, 254, 0.08));
-  border: 1px solid rgba(55, 214, 198, 0.16);
+  background: linear-gradient(180deg, rgba(39, 52, 73, 0.72), rgba(24, 34, 53, 0.96));
+  border: 1px solid rgba(148, 163, 184, 0.1);
 
   strong {
     display: block;
     margin-top: 0.5rem;
-    line-height: 1.35;
+    line-height: 1.45;
   }
 
   p {
@@ -97,7 +101,7 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: var(--color-text-soft);
 }
 
 .sidebar--compact {

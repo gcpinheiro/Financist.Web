@@ -14,5 +14,5 @@ export class StatCardComponent {
   readonly icon = input<string>('dashboard');
   readonly change = input<string>('');
   readonly helper = input<string>('');
-  readonly tone = input<'primary' | 'success' | 'warning' | 'info'>('primary');
+  readonly tone = input<'neutral' | 'success' | 'warning' | 'danger' | 'info'>('neutral');
 }

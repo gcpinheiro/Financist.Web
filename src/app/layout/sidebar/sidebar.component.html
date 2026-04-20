@@ -4,7 +4,7 @@
     @if (!compact()) {
       <div>
         <strong>Financist</strong>
-        <span>Finance cockpit</span>
+        <span>Rotina financeira</span>
       </div>
     }
   </div>
@@ -12,7 +12,7 @@
   <button class="sidebar__compact" type="button" (click)="compactToggled.emit()">
     <app-icon [name]="compact() ? 'expand' : 'collapse'" [size]="18" />
     @if (!compact()) {
-      <span>Collapse</span>
+      <span>Recolher menu</span>
     }
   </button>
 
@@ -34,9 +34,9 @@
 
   @if (!compact()) {
     <div class="sidebar__promo">
-      <span class="sidebar__promo-label">This month</span>
-      <strong>Cashflow is 14% ahead of plan</strong>
-      <p>Revenue outpaced spending for the third straight cycle.</p>
+      <span class="sidebar__promo-label">Neste mes</span>
+      <strong>O caixa segue estavel e acima do ritmo planejado.</strong>
+      <p>Mantenha entradas, despesas e metas sob acompanhamento diario.</p>
     </div>
   }
 </aside>

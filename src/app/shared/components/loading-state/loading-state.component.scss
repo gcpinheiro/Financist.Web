@@ -15,8 +15,8 @@
 .loading-state__spinner {
   width: 2.5rem;
   height: 2.5rem;
-  border: 3px solid rgba(255, 255, 255, 0.08);
-  border-top-color: var(--color-primary);
+  border: 3px solid rgba(148, 163, 184, 0.12);
+  border-top-color: var(--color-info);
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
 }

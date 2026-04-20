@@ -33,12 +33,24 @@ export class CategoriesPageComponent {
   protected readonly loading = this.categoriesService.loading;
 
   protected readonly columns: DataTableColumn[] = [
-    { key: 'name', label: 'Category' },
-    { key: 'type', label: 'Flow type', type: 'badge' },
-    { key: 'isSystem', label: 'Origin', type: 'badge', cell: (row) => (row.isSystem ? 'System' : 'Custom') }
+    { key: 'name', label: 'Categoria' },
+    { key: 'type', label: 'Fluxo', type: 'badge', cell: (row) => this.flowLabel(row.type) },
+    { key: 'isSystem', label: 'Origem', type: 'badge', cell: (row) => (row.isSystem ? 'Sistema' : 'Personalizada') }
   ];
 
   constructor() {
     this.categoriesService.load();
+  }
+
+  private flowLabel(type: string | null): string {
+    if (type === 'Income') {
+      return 'Receita';
+    }
+
+    if (type === 'Expense') {
+      return 'Despesa';
+    }
+
+    return type ?? '-';
   }
 }

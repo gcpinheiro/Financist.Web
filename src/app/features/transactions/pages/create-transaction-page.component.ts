@@ -53,21 +53,21 @@ export class CreateTransactionPageComponent {
 
   protected readonly categoryOptions = computed<FormFieldOption[]>(() =>
     this.categories().map((category) => ({
-      label: category.name ?? 'Unnamed category',
+      label: category.name ?? 'Categoria sem nome',
       value: category.id
     }))
   );
 
   protected readonly cardOptions = computed<FormFieldOption[]>(() =>
     this.cards().map((card) => ({
-      label: `${card.name ?? 'Card'} • ${card.last4Digits ?? '----'}`,
+      label: `${card.name ?? 'Cartao'} - ${card.last4Digits ?? '----'}`,
       value: card.id
     }))
   );
 
   protected readonly typeOptions: FormFieldOption[] = [
-    { label: 'Expense', value: 'Expense' },
-    { label: 'Income', value: 'Income' }
+    { label: 'Despesa', value: 'Expense' },
+    { label: 'Receita', value: 'Income' }
   ];
 
   constructor() {

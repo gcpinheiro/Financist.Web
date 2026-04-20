@@ -33,23 +33,23 @@ export class GoalsPageComponent {
   protected readonly loading = this.goalsService.loading;
 
   protected readonly columns: DataTableColumn[] = [
-    { key: 'name', label: 'Goal' },
-    { key: 'description', label: 'Description' },
+    { key: 'name', label: 'Meta' },
+    { key: 'description', label: 'Descricao' },
     {
       key: 'currentAmount',
-      label: 'Current',
+      label: 'Atual',
       type: 'currency',
       align: 'end',
       currencyCode: (row) => row.currency
     },
     {
       key: 'targetAmount',
-      label: 'Target',
+      label: 'Objetivo',
       type: 'currency',
       align: 'end',
       currencyCode: (row) => row.currency
     },
-    { key: 'progressPercentage', label: 'Progress', type: 'percentage', align: 'end' }
+    { key: 'progressPercentage', label: 'Progresso', type: 'percentage', align: 'end' }
   ];
 
   constructor() {

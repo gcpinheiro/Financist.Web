@@ -17,13 +17,13 @@ export class SidebarComponent {
   readonly compactToggled = output<void>();
 
   protected readonly navigation: NavigationItem[] = [
-    { label: 'Dashboard', route: '/dashboard', icon: 'dashboard' },
-    { label: 'AI Assistant', route: '/ai-assistant', icon: 'assistant' },
-    { label: 'Transactions', route: '/transactions', icon: 'transactions' },
-    { label: 'Categories', route: '/categories', icon: 'categories' },
-    { label: 'Cards', route: '/cards', icon: 'cards' },
-    { label: 'Goals', route: '/goals', icon: 'goals' },
-    { label: 'Documents', route: '/documents', icon: 'documents' },
-    { label: 'Settings', route: '/settings', icon: 'settings' }
+    { label: 'Visao geral', route: '/dashboard', icon: 'dashboard' },
+    { label: 'Assistente IA', route: '/ai-assistant', icon: 'assistant' },
+    { label: 'Transacoes', route: '/transactions', icon: 'transactions' },
+    { label: 'Categorias', route: '/categories', icon: 'categories' },
+    { label: 'Cartoes', route: '/cards', icon: 'cards' },
+    { label: 'Metas', route: '/goals', icon: 'goals' },
+    { label: 'Documentos', route: '/documents', icon: 'documents' },
+    { label: 'Configuracoes', route: '/settings', icon: 'settings' }
   ];
 }

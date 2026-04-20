@@ -34,9 +34,9 @@
   display: grid;
   place-items: center;
   border-radius: 1rem;
-  border: 1px solid rgba(146, 167, 207, 0.14);
-  color: var(--color-primary);
-  background: rgba(16, 25, 44, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  color: var(--color-text-muted);
+  background: rgba(19, 29, 49, 0.88);
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -50,15 +50,15 @@
   width: fit-content;
   padding: 0.95rem 1.05rem;
   border-radius: 1.2rem;
-  background: rgba(17, 29, 49, 0.84);
-  border: 1px solid rgba(146, 167, 207, 0.14);
+  background: rgba(24, 34, 53, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .chat-container__typing-dot {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: var(--color-primary);
+  background: var(--color-text-muted);
   animation: pulse 0.9s infinite ease-in-out;
 }
 

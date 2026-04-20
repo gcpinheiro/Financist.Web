@@ -33,17 +33,17 @@ export class CardsPageComponent {
   protected readonly loading = this.cardsService.loading;
 
   protected readonly columns: DataTableColumn[] = [
-    { key: 'name', label: 'Card name' },
-    { key: 'last4Digits', label: 'Last digits', cell: (row) => `•••• ${row.last4Digits ?? '----'}` },
+    { key: 'name', label: 'Cartao' },
+    { key: 'last4Digits', label: 'Final', cell: (row) => `**** ${row.last4Digits ?? '----'}` },
     {
       key: 'limitAmount',
-      label: 'Limit',
+      label: 'Limite',
       type: 'currency',
       align: 'end',
       currencyCode: (row) => row.currency
     },
-    { key: 'closingDay', label: 'Closing day', align: 'end' },
-    { key: 'dueDay', label: 'Due day', align: 'end' }
+    { key: 'closingDay', label: 'Fechamento', align: 'end' },
+    { key: 'dueDay', label: 'Vencimento', align: 'end' }
   ];
 
   constructor() {

@@ -35,11 +35,11 @@ export class DocumentsPageComponent {
   protected readonly lastUploadMessage = signal('');
 
   protected readonly columns: DataTableColumn[] = [
-    { key: 'originalFileName', label: 'File' },
-    { key: 'contentType', label: 'Content type' },
-    { key: 'uploadedAtUtc', label: 'Uploaded at', type: 'date' },
-    { key: 'sizeBytes', label: 'Size', align: 'end', cell: (row) => this.formatSize(row.sizeBytes) },
-    { key: 'status', label: 'Status', type: 'badge', align: 'end' }
+    { key: 'originalFileName', label: 'Arquivo' },
+    { key: 'contentType', label: 'Tipo' },
+    { key: 'uploadedAtUtc', label: 'Enviado em', type: 'date' },
+    { key: 'sizeBytes', label: 'Tamanho', align: 'end', cell: (row) => this.formatSize(row.sizeBytes) },
+    { key: 'status', label: 'Status', type: 'badge', align: 'end', cell: (row) => this.statusLabel(row.status) }
   ];
 
   constructor() {
@@ -58,7 +58,7 @@ export class DocumentsPageComponent {
     this.documentsService.upload(files).subscribe({
       next: (imports) => {
         this.uploading.set(false);
-        this.lastUploadMessage.set(`${imports.length} file(s) uploaded successfully.`);
+        this.lastUploadMessage.set(`${imports.length} arquivo(s) enviado(s) com sucesso.`);
         input.value = '';
       },
       error: () => {
@@ -77,5 +77,17 @@ export class DocumentsPageComponent {
     }
 
     return `${sizeBytes} B`;
+  }
+
+  private statusLabel(status: string | null): string {
+    if (status === 'Completed') {
+      return 'Concluido';
+    }
+
+    if (status === 'Processing') {
+      return 'Processando';
+    }
+
+    return status ?? '-';
   }
 }

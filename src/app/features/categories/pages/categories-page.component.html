@@ -1,25 +1,25 @@
 <div class="feature-page">
   <app-page-header
-    eyebrow="Structure"
-    title="Budget categories"
-    subtitle="Maintain a clean category system so transactions and reporting stay reliable."
+    eyebrow="Estrutura"
+    title="Categorias"
+    subtitle="Mantenha uma estrutura clara para dar contexto aos lancamentos."
   >
-    <app-primary-button actions icon="plus" routerLink="/categories/new">New category</app-primary-button>
+    <app-primary-button actions icon="plus" routerLink="/categories/new">Nova categoria</app-primary-button>
   </app-page-header>
 
   @if (loading() && !categories().length) {
-    <app-loading-state label="Loading categories..." />
+    <app-loading-state label="Carregando categorias..." />
   } @else if (categories().length) {
     <app-table-card
-      title="Active categories"
-      subtitle="Categories available for transactions and reporting."
+      title="Categorias ativas"
+      subtitle="Categorias disponiveis para lancamentos e leitura financeira."
     >
       <app-data-table [columns]="columns" [rows]="categories()" trackByKey="id" />
     </app-table-card>
   } @else {
     <app-empty-state
-      title="No categories configured"
-      description="Create categories to give transactions a meaningful reporting structure."
+      title="Nenhuma categoria configurada"
+      description="Crie categorias para organizar melhor receitas e despesas."
       icon="categories"
     />
   }

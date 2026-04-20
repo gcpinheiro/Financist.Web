@@ -1,28 +1,28 @@
 <div class="create-page">
   <app-page-header
-    eyebrow="Create"
-    title="Register a card"
-    subtitle="Store the exact card fields currently supported by the cards endpoint."
+    eyebrow="Cadastro"
+    title="Cadastrar cartao"
+    subtitle="Registre os campos principais do cartao para acompanhar limite e ciclo."
   />
 
   <app-section-card
-    title="Card details"
-    subtitle="Name, last four digits, limit amount, currency, and billing cycle dates."
+    title="Dados do cartao"
+    subtitle="Nome, quatro digitos finais, limite, moeda e datas do ciclo."
   >
     <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="create-page__grid">
-        <app-form-field [form]="form" controlName="name" label="Card name" placeholder="Operations Black" />
-        <app-form-field [form]="form" controlName="last4Digits" label="Last digits" placeholder="4821" />
-        <app-form-field [form]="form" controlName="limitAmount" label="Credit limit" type="number" />
-        <app-form-field [form]="form" controlName="currency" label="Currency" placeholder="USD" />
-        <app-form-field [form]="form" controlName="closingDay" label="Closing day" type="number" />
-        <app-form-field [form]="form" controlName="dueDay" label="Due day" type="number" />
+        <app-form-field [form]="form" controlName="name" label="Nome do cartao" placeholder="Operacoes Black" />
+        <app-form-field [form]="form" controlName="last4Digits" label="Digitos finais" placeholder="4821" />
+        <app-form-field [form]="form" controlName="limitAmount" label="Limite de credito" type="number" />
+        <app-form-field [form]="form" controlName="currency" label="Moeda" placeholder="USD" />
+        <app-form-field [form]="form" controlName="closingDay" label="Dia de fechamento" type="number" />
+        <app-form-field [form]="form" controlName="dueDay" label="Dia de vencimento" type="number" />
       </div>
 
       <div class="create-page__actions">
-        <app-secondary-button routerLink="/cards">Cancel</app-secondary-button>
+        <app-secondary-button routerLink="/cards">Cancelar</app-secondary-button>
         <app-primary-button type="submit" [disabled]="saving()">
-          {{ saving() ? 'Saving...' : 'Create card' }}
+          {{ saving() ? 'Salvando...' : 'Criar cartao' }}
         </app-primary-button>
       </div>
     </form>

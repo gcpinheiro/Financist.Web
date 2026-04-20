@@ -53,7 +53,7 @@ export class LoginPageComponent {
       },
       error: () => {
         this.loading.set(false);
-        this.errorMessage.set('We could not sign you in. Please verify your credentials and try again.');
+        this.errorMessage.set('Nao foi possivel entrar. Verifique seus dados e tente novamente.');
       }
     });
   }

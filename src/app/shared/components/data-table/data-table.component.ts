@@ -36,7 +36,7 @@ export class DataTableComponent {
       const currency =
         requestedCurrency && requestedCurrency.trim() ? requestedCurrency.trim().toUpperCase() : 'USD';
 
-      return new Intl.NumberFormat('en-US', {
+      return new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency,
         maximumFractionDigits: 0
@@ -45,7 +45,7 @@ export class DataTableComponent {
 
     if (column.type === 'date') {
       return (
-        this.datePipe.transform(value as string | number | Date | null | undefined, 'MMM d, y') ??
+        this.datePipe.transform(value as string | number | Date | null | undefined, 'dd/MM/yyyy') ??
         String(value)
       );
     }

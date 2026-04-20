@@ -22,8 +22,8 @@ export class AppShellComponent {
 
   protected readonly sidebarCompact = signal(false);
   protected readonly mobileSidebarOpen = signal(false);
-  protected readonly pageTitle = signal('Dashboard');
-  protected readonly pageSubtitle = signal('A live pulse of balances, cashflow, and spending patterns.');
+  protected readonly pageTitle = signal('Visao geral');
+  protected readonly pageSubtitle = signal('Acompanhe saldos, fluxo de caixa e prioridades financeiras.');
 
   constructor() {
     this.router.events
@@ -35,7 +35,7 @@ export class AppShellComponent {
       )
       .subscribe((data) => {
         this.pageTitle.set((data['title'] as string | undefined) ?? 'Financist');
-        this.pageSubtitle.set((data['subtitle'] as string | undefined) ?? 'Finance cockpit');
+        this.pageSubtitle.set((data['subtitle'] as string | undefined) ?? 'Central financeira');
       });
   }
 
@@ -56,15 +56,15 @@ export class AppShellComponent {
   }
 
   protected userName(): string {
-    return this.authService.currentUser()?.fullName ?? 'Financist user';
+    return this.authService.currentUser()?.fullName ?? 'Usuario Financist';
   }
 
   protected userRole(): string {
-    return 'Workspace member';
+    return 'Membro da conta';
   }
 
   protected userInitials(): string {
-    const fullName = this.authService.currentUser()?.fullName ?? 'Financist user';
+    const fullName = this.authService.currentUser()?.fullName ?? 'Usuario Financist';
     const initials = fullName
       .split(/\s+/)
       .filter(Boolean)
@@ -72,7 +72,7 @@ export class AppShellComponent {
       .map((part) => part[0]?.toUpperCase() ?? '')
       .join('');
 
-    return initials || 'FU';
+    return initials || 'UF';
   }
 
   private findRouteData(route: ActivatedRoute): Data {

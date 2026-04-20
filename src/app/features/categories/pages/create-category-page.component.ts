@@ -34,8 +34,8 @@ export class CreateCategoryPageComponent {
 
   protected readonly saving = signal(false);
   protected readonly typeOptions: FormFieldOption[] = [
-    { label: 'Expense', value: 'Expense' },
-    { label: 'Income', value: 'Income' }
+    { label: 'Despesa', value: 'Expense' },
+    { label: 'Receita', value: 'Income' }
   ];
 
   protected readonly form = this.formBuilder.group({

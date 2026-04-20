@@ -15,6 +15,6 @@ export class ChatMessageComponent {
   constructor(private readonly datePipe: DatePipe) {}
 
   protected formattedTime(): string {
-    return this.datePipe.transform(this.message().timestamp, 'MMM d, h:mm a') ?? '';
+    return this.datePipe.transform(this.message().timestamp, 'HH:mm') ?? '';
   }
 }

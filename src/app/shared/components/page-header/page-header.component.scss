@@ -7,25 +7,26 @@
 
   h1 {
     margin: 0;
-    font: 700 clamp(1.8rem, 3vw, 2.5rem) / 1.05 var(--font-display);
-    letter-spacing: -0.04em;
+    font: 700 clamp(1.9rem, 3vw, 2.45rem) / 1.08 var(--font-display);
+    letter-spacing: -0.03em;
   }
 
   p {
-    margin: 0.55rem 0 0;
-    max-width: 40rem;
+    margin: 0.6rem 0 0;
+    max-width: 42rem;
     color: var(--color-text-muted);
-    font-size: 0.98rem;
+    font-size: 0.96rem;
+    line-height: 1.65;
   }
 }
 
 .page-header__eyebrow {
   display: inline-block;
   margin-bottom: 0.75rem;
-  color: var(--color-primary);
+  color: var(--color-text-soft);
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 

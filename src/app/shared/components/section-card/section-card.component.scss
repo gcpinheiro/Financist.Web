@@ -1,5 +1,5 @@
 .section-card {
-  padding: 1.4rem;
+  padding: 1.45rem;
   display: grid;
   gap: 1.25rem;
 }
@@ -7,13 +7,14 @@
 header {
   h2 {
     margin: 0;
-    font-size: 1.02rem;
+    font-size: 1rem;
     font-weight: 800;
   }
 
   p {
-    margin: 0.35rem 0 0;
+    margin: 0.4rem 0 0;
     color: var(--color-text-muted);
+    line-height: 1.55;
   }
 }
 

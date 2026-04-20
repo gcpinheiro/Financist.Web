@@ -7,5 +7,5 @@ import { Component, input } from '@angular/core';
   styleUrl: './loading-state.component.scss'
 })
 export class LoadingStateComponent {
-  readonly label = input('Loading data...');
+  readonly label = input('Carregando dados...');
 }

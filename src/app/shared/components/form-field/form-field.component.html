@@ -13,7 +13,7 @@
     }
     @case ('select') {
       <select class="field__control" [id]="fieldId()" [formControl]="resolvedControl()">
-        <option value="">Select an option</option>
+        <option value="">Selecione uma opcao</option>
         @for (option of options(); track option.value) {
           <option [value]="option.value">{{ option.label }}</option>
         }

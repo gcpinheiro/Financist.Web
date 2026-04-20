@@ -1,14 +1,14 @@
 <div class="register-page">
   <section class="register-page__hero surface-card">
     <div class="register-page__hero-badge">
-      <span>Workspace onboarding</span>
+      <span>Inicio simples e organizado</span>
     </div>
 
     <div class="register-page__hero-copy">
-      <h1>Launch your Financist workspace with one account setup flow.</h1>
+      <h1>Comece sua rotina financeira com uma configuracao clara desde o primeiro acesso.</h1>
       <p>
-        Create your access, connect your finance operations, and move into a familiar dark
-        command center built for fast daily execution.
+        Crie seu acesso, estruture categorias, acompanhe metas e use um ambiente pensado para a
+        tomada de decisao diaria.
       </p>
     </div>
 
@@ -16,22 +16,22 @@
       <article>
         <app-icon name="assistant" [size]="20" />
         <div>
-          <strong>AI-ready workspace</strong>
-          <span>Start with a chat-first environment prepared for guidance and next actions.</span>
+          <strong>Assistencia contextual</strong>
+          <span>Use o chat para entender dados, resumir movimentos e ganhar clareza.</span>
         </div>
       </article>
       <article>
         <app-icon name="target" [size]="20" />
         <div>
-          <strong>Goals and controls</strong>
-          <span>Organize spending structure, savings targets, and account visibility from day one.</span>
+          <strong>Metas e controle</strong>
+          <span>Estruture reservas, despesas e prioridades com boa leitura desde o inicio.</span>
         </div>
       </article>
       <article>
         <app-icon name="documents" [size]="20" />
         <div>
-          <strong>Import-friendly operations</strong>
-          <span>Bring statements and workflows into one place as your finance stack grows.</span>
+          <strong>Documentos centralizados</strong>
+          <span>Reuna extratos e arquivos em um fluxo unico e confiavel.</span>
         </div>
       </article>
     </div>
@@ -43,20 +43,20 @@
         <div class="register-page__brand-mark">F</div>
         <div>
           <strong>Financist</strong>
-          <span>Create your account</span>
+          <span>Criar seu acesso</span>
         </div>
       </div>
 
-      <h2>Set up access</h2>
-      <p>Enter your name, email, and password to create a new workspace login.</p>
+      <h2>Criar conta</h2>
+      <p>Informe seus dados para acessar um ambiente financeiro mais claro e organizado.</p>
     </div>
 
     <form class="register-page__form" [formGroup]="form" (ngSubmit)="submit()">
       <app-form-field
         [form]="form"
         controlName="fullName"
-        label="Full name"
-        placeholder="Alex Johnson"
+        label="Nome completo"
+        placeholder="Ana Souza"
         autocomplete="name"
       />
 
@@ -64,7 +64,7 @@
         [form]="form"
         controlName="email"
         label="Email"
-        placeholder="alex@company.com"
+        placeholder="ana@empresa.com"
         type="email"
         autocomplete="email"
       />
@@ -72,11 +72,11 @@
       <app-form-field
         [form]="form"
         controlName="password"
-        label="Password"
-        placeholder="Create a password"
+        label="Senha"
+        placeholder="Crie uma senha"
         type="password"
         autocomplete="new-password"
-        hint="Use at least 6 characters."
+        hint="Use pelo menos 6 caracteres."
       />
 
       @if (errorMessage()) {
@@ -85,15 +85,15 @@
 
       <div class="register-page__actions">
         <app-primary-button type="submit" [fullWidth]="true" [disabled]="loading()">
-          {{ loading() ? 'Creating account...' : 'Create account' }}
+          {{ loading() ? 'Criando conta...' : 'Criar conta' }}
         </app-primary-button>
-        <app-secondary-button [fullWidth]="true" (pressed)="goToLogin()">Back to sign in</app-secondary-button>
+        <app-secondary-button [fullWidth]="true" (pressed)="goToLogin()">Voltar para entrar</app-secondary-button>
       </div>
     </form>
 
     <div class="register-page__footer">
-      <span>Already have access?</span>
-      <a routerLink="/auth/login">Sign in instead</a>
+      <span>Ja tem acesso?</span>
+      <a routerLink="/auth/login">Entrar agora</a>
     </div>
   </section>
 </div>

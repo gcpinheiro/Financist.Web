@@ -18,14 +18,14 @@
 .shell__main {
   min-width: 0;
   display: grid;
-  gap: 1.25rem;
-  padding: 1.25rem;
+  gap: 1.35rem;
+  padding: 1.4rem;
 }
 
 .shell__content {
   width: min(100%, var(--content-width));
   display: grid;
-  gap: 1.5rem;
+  gap: 1.75rem;
   align-content: start;
   margin: 0 auto;
   animation: page-in 220ms ease;

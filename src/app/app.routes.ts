@@ -13,8 +13,8 @@ export const routes: Routes = [
             (component) => component.LoginPageComponent
           ),
         data: {
-          title: 'Welcome back',
-          subtitle: 'Sign in to access your finance workspace.'
+          title: 'Entrar',
+          subtitle: 'Acesse sua conta para acompanhar a rotina financeira.'
         }
       },
       {
@@ -24,8 +24,8 @@ export const routes: Routes = [
             (component) => component.RegisterPageComponent
           ),
         data: {
-          title: 'Create account',
-          subtitle: 'Set up your Financist workspace access.'
+          title: 'Criar conta',
+          subtitle: 'Configure seu acesso ao Financist.'
         }
       },
       {
@@ -52,8 +52,8 @@ export const routes: Routes = [
             (component) => component.DashboardPageComponent
           ),
         data: {
-          title: 'Dashboard',
-          subtitle: 'A live pulse of balances, cashflow, and spending patterns.'
+          title: 'Visao geral',
+          subtitle: 'Acompanhe saldos, fluxo de caixa e movimentacoes do dia.'
         }
       },
       {
@@ -63,15 +63,15 @@ export const routes: Routes = [
             (component) => component.AiAssistantPageComponent
           ),
         data: {
-          title: 'AI Assistant',
-          subtitle: 'Ask for financial context, summaries, and next-step guidance from one workspace chat.'
+          title: 'Assistente financeiro',
+          subtitle: 'Consulte contexto financeiro, resumos e proximos passos em um unico chat.'
         }
       },
       {
         path: 'transactions',
         data: {
-          title: 'Transactions',
-          subtitle: 'Track inflows, outflows, and account activity with confidence.'
+          title: 'Transacoes',
+          subtitle: 'Acompanhe entradas, saidas e a atividade das contas com clareza.'
         },
         children: [
           {
@@ -88,8 +88,8 @@ export const routes: Routes = [
                 (component) => component.CreateTransactionPageComponent
               ),
             data: {
-              title: 'New transaction',
-              subtitle: 'Capture movement across accounts, categories, and cards.'
+              title: 'Nova transacao',
+              subtitle: 'Registre a movimentacao com categoria, conta e contexto.'
             }
           }
         ]
@@ -97,8 +97,8 @@ export const routes: Routes = [
       {
         path: 'categories',
         data: {
-          title: 'Categories',
-          subtitle: 'Shape spending structure with clear budgeting buckets.'
+          title: 'Categorias',
+          subtitle: 'Organize a estrutura financeira com categorias claras e consistentes.'
         },
         children: [
           {
@@ -115,8 +115,8 @@ export const routes: Routes = [
                 (component) => component.CreateCategoryPageComponent
               ),
             data: {
-              title: 'New category',
-              subtitle: 'Define a budget lane and visual identity for new activity.'
+              title: 'Nova categoria',
+              subtitle: 'Cadastre uma nova categoria para manter a leitura dos lancamentos.'
             }
           }
         ]
@@ -124,8 +124,8 @@ export const routes: Routes = [
       {
         path: 'cards',
         data: {
-          title: 'Cards',
-          subtitle: 'Monitor credit lines, due dates, and payment readiness.'
+          title: 'Cartoes',
+          subtitle: 'Monitore limite, fechamento e vencimento em um unico lugar.'
         },
         children: [
           {
@@ -142,8 +142,8 @@ export const routes: Routes = [
                 (component) => component.CreateCardPageComponent
               ),
             data: {
-              title: 'New card',
-              subtitle: 'Register a credit or debit card and its operating details.'
+              title: 'Novo cartao',
+              subtitle: 'Cadastre os dados do cartao para acompanhar limites e ciclo.'
             }
           }
         ]
@@ -151,8 +151,8 @@ export const routes: Routes = [
       {
         path: 'goals',
         data: {
-          title: 'Goals',
-          subtitle: 'Keep savings targets visible, measurable, and motivating.'
+          title: 'Metas',
+          subtitle: 'Mantenha objetivos de reserva e investimento sempre visiveis.'
         },
         children: [
           {
@@ -169,8 +169,8 @@ export const routes: Routes = [
                 (component) => component.CreateGoalPageComponent
               ),
             data: {
-              title: 'New goal',
-              subtitle: 'Create a target with milestones, deadlines, and momentum.'
+              title: 'Nova meta',
+              subtitle: 'Defina alvo, prazo e valor inicial para acompanhar a evolucao.'
             }
           }
         ]
@@ -182,8 +182,8 @@ export const routes: Routes = [
             (component) => component.DocumentsPageComponent
           ),
         data: {
-          title: 'Documents',
-          subtitle: 'Upload statements and keep imports centralized for reconciliation.'
+          title: 'Documentos',
+          subtitle: 'Centralize importacoes e extratos para conciliacao.'
         }
       },
       {
@@ -193,8 +193,8 @@ export const routes: Routes = [
             (component) => component.SettingsPageComponent
           ),
         data: {
-          title: 'Settings',
-          subtitle: 'Configure preferences, policies, and integration readiness.'
+          title: 'Configuracoes',
+          subtitle: 'Ajuste preferencias, dados da conta e futuras integracoes.'
         }
       }
     ]

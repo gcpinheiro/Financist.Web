@@ -25,6 +25,7 @@ input,
 select,
 textarea {
   font: inherit;
+  color-scheme: dark;
 }
 
 button {
@@ -42,7 +43,7 @@ img {
 }
 
 ::selection {
-  background: rgba(55, 214, 198, 0.32);
+  background: rgba(59, 130, 246, 0.28);
   color: var(--color-text);
 }
 
@@ -51,7 +52,7 @@ img {
   background: var(--gradient-card);
   box-shadow: var(--shadow-card);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(18px);
 }
 
 .app-grid {

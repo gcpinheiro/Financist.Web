@@ -1,14 +1,14 @@
 <div class="login-page">
   <section class="login-page__hero surface-card">
     <div class="login-page__hero-badge">
-      <span>Premium finance command center</span>
+      <span>Rotina financeira com clareza</span>
     </div>
 
     <div class="login-page__hero-copy">
-      <h1>Control cash, cards, budgets, and imports from one dark finance cockpit.</h1>
+      <h1>Organize caixa, cartoes, metas e importacoes em um unico ambiente financeiro.</h1>
       <p>
-        Financist is designed for teams that need clarity across balances, spending, goals, and
-        operational flows without losing speed.
+        O Financist foi pensado para o uso diario: uma interface calma, legivel e segura para
+        acompanhar o que entra, o que sai e o que ainda precisa de atencao.
       </p>
     </div>
 
@@ -16,22 +16,22 @@
       <article>
         <app-icon name="wallet" [size]="20" />
         <div>
-          <strong>Unified balances</strong>
-          <span>Monitor income, expenses, and reserves in one timeline.</span>
+          <strong>Saldos em um so lugar</strong>
+          <span>Acompanhe receitas, despesas e reserva sem trocar de contexto.</span>
         </div>
       </article>
       <article>
         <app-icon name="trend" [size]="20" />
         <div>
-          <strong>Live performance insight</strong>
-          <span>See cashflow trends and spending pressure in seconds.</span>
+          <strong>Leitura rapida do fluxo</strong>
+          <span>Entenda o comportamento do caixa com foco no que importa.</span>
         </div>
       </article>
       <article>
         <app-icon name="documents" [size]="20" />
         <div>
-          <strong>Import-ready workflows</strong>
-          <span>Upload statements and prepare backend-connected reconciliation.</span>
+          <strong>Importacao preparada</strong>
+          <span>Centralize arquivos e mantenha a conciliacao pronta para o proximo passo.</span>
         </div>
       </article>
     </div>
@@ -43,12 +43,12 @@
         <div class="login-page__brand-mark">F</div>
         <div>
           <strong>Financist</strong>
-          <span>Sign in to continue</span>
+          <span>Entrar para continuar</span>
         </div>
       </div>
 
-      <h2>Welcome back</h2>
-      <p>Use your workspace credentials to access the dashboard and your financial operations.</p>
+      <h2>Bem-vindo de volta</h2>
+      <p>Use suas credenciais para acessar a visao geral e acompanhar sua operacao financeira.</p>
     </div>
 
     <form class="login-page__form" [formGroup]="form" (ngSubmit)="submit()">
@@ -56,7 +56,7 @@
         [form]="form"
         controlName="email"
         label="Email"
-        placeholder="finance@company.com"
+        placeholder="financeiro@empresa.com"
         type="email"
         autocomplete="email"
       />
@@ -64,8 +64,8 @@
       <app-form-field
         [form]="form"
         controlName="password"
-        label="Password"
-        placeholder="Enter your password"
+        label="Senha"
+        placeholder="Digite sua senha"
         type="password"
         autocomplete="current-password"
       />
@@ -76,15 +76,15 @@
 
       <div class="login-page__actions">
         <app-primary-button type="submit" [fullWidth]="true" [disabled]="loading()">
-          {{ loading() ? 'Signing in...' : 'Open dashboard' }}
+          {{ loading() ? 'Entrando...' : 'Abrir painel' }}
         </app-primary-button>
-        <app-secondary-button [fullWidth]="true" (pressed)="goToRegister()">Create account</app-secondary-button>
+        <app-secondary-button [fullWidth]="true" (pressed)="goToRegister()">Criar conta</app-secondary-button>
       </div>
     </form>
 
     <div class="login-page__footer">
-      <span>Use an account provisioned by the API, or create one from the registration flow.</span>
-      <a routerLink="/auth/register">Need a new workspace account?</a>
+      <span>Entre com sua conta da empresa ou crie um novo acesso para comecar.</span>
+      <a routerLink="/auth/register">Precisa de uma nova conta?</a>
     </div>
   </section>
 </div>

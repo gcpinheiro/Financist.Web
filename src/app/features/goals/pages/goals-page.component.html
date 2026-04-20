@@ -1,25 +1,25 @@
 <div class="feature-page">
   <app-page-header
-    eyebrow="Savings"
-    title="Goals tracker"
-    subtitle="Keep target funding visible so strategic reserves and investments stay on course."
+    eyebrow="Planejamento"
+    title="Metas financeiras"
+    subtitle="Mantenha objetivos de reserva e investimento sempre visiveis."
   >
-    <app-primary-button actions icon="plus" routerLink="/goals/new">New goal</app-primary-button>
+    <app-primary-button actions icon="plus" routerLink="/goals/new">Nova meta</app-primary-button>
   </app-page-header>
 
   @if (loading() && !goals().length) {
-    <app-loading-state label="Loading goals..." />
+    <app-loading-state label="Carregando metas..." />
   } @else if (goals().length) {
     <app-table-card
-      title="Active goals"
-      subtitle="Track progress, current value, and target value for each goal."
+      title="Metas ativas"
+      subtitle="Acompanhe progresso, valor atual e objetivo de cada meta."
     >
       <app-data-table [columns]="columns" [rows]="goals()" trackByKey="id" />
     </app-table-card>
   } @else {
     <app-empty-state
-      title="No goals created"
-      description="Add savings or investment goals to keep strategic priorities visible."
+      title="Nenhuma meta cadastrada"
+      description="Crie metas para manter prioridades financeiras em destaque."
       icon="goals"
     />
   }

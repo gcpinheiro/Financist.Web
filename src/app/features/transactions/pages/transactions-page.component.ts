@@ -39,14 +39,14 @@ export class TransactionsPageComponent {
   protected readonly loading = this.transactionsService.loading;
 
   protected readonly columns: DataTableColumn[] = [
-    { key: 'description', label: 'Description' },
-    { key: 'type', label: 'Type', type: 'badge' },
-    { key: 'categoryId', label: 'Category', cell: (row) => this.categoryName(row.categoryId) },
-    { key: 'cardId', label: 'Card', cell: (row) => this.cardLabel(row.cardId) },
-    { key: 'occurredOn', label: 'Date', type: 'date' },
+    { key: 'description', label: 'Descricao' },
+    { key: 'type', label: 'Tipo', type: 'badge', cell: (row) => this.flowLabel(row.type) },
+    { key: 'categoryId', label: 'Categoria', cell: (row) => this.categoryName(row.categoryId) },
+    { key: 'cardId', label: 'Cartao', cell: (row) => this.cardLabel(row.cardId) },
+    { key: 'occurredOn', label: 'Data', type: 'date' },
     {
       key: 'amount',
-      label: 'Amount',
+      label: 'Valor',
       type: 'currency',
       align: 'end',
       currencyCode: (row) => row.currency
@@ -73,10 +73,10 @@ export class TransactionsPageComponent {
 
   private categoryName(categoryId: string | null): string {
     if (!categoryId) {
-      return 'Uncategorized';
+      return 'Sem categoria';
     }
 
-    return this.categoriesService.categories().find((category) => category.id === categoryId)?.name ?? 'Unknown';
+    return this.categoriesService.categories().find((category) => category.id === categoryId)?.name ?? 'Nao encontrada';
   }
 
   private cardLabel(cardId: string | null): string {
@@ -85,6 +85,18 @@ export class TransactionsPageComponent {
     }
 
     const card = this.cardsService.cards().find((item) => item.id === cardId);
-    return card ? `${card.name ?? 'Card'} • ${card.last4Digits ?? '----'}` : 'Unknown';
+    return card ? `${card.name ?? 'Cartao'} - ${card.last4Digits ?? '----'}` : 'Nao encontrado';
+  }
+
+  private flowLabel(type: string | null): string {
+    if (type === 'Income') {
+      return 'Receita';
+    }
+
+    if (type === 'Expense') {
+      return 'Despesa';
+    }
+
+    return type ?? '-';
   }
 }

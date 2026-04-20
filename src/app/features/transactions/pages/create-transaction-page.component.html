@@ -1,52 +1,52 @@
 <div class="create-page">
   <app-page-header
-    eyebrow="Create"
-    title="Add a new transaction"
-    subtitle="Capture the movement with the exact payload shape documented by the transactions endpoint."
+    eyebrow="Cadastro"
+    title="Nova transacao"
+    subtitle="Registre a movimentacao com os principais dados financeiros do lancamento."
   />
 
   <app-section-card
-    title="Transaction details"
-    subtitle="Description, amount, currency, type, date, and optional category or card references."
+    title="Dados da transacao"
+    subtitle="Descricao, valor, moeda, tipo, data e referencias opcionais de categoria ou cartao."
   >
     <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="create-page__grid">
         <app-form-field
           [form]="form"
           controlName="description"
-          label="Description"
-          placeholder="Example: AWS monthly invoice"
+          label="Descricao"
+          placeholder="Exemplo: fatura mensal da AWS"
         />
         <app-form-field
           [form]="form"
           controlName="type"
-          label="Type"
+          label="Tipo"
           type="select"
           [options]="typeOptions"
         />
         <app-form-field
           [form]="form"
           controlName="amount"
-          label="Amount"
+          label="Valor"
           type="number"
           placeholder="0.00"
         />
         <app-form-field
           [form]="form"
           controlName="currency"
-          label="Currency"
+          label="Moeda"
           placeholder="USD"
         />
-        <app-form-field [form]="form" controlName="occurredOn" label="Occurred on" type="date" />
-        <app-form-field [form]="form" controlName="categoryId" label="Category" type="select" [options]="categoryOptions()" />
-        <app-form-field [form]="form" controlName="cardId" label="Card" type="select" [options]="cardOptions()" />
-        <app-form-field [form]="form" controlName="notes" label="Notes" type="textarea" placeholder="Optional internal note" />
+        <app-form-field [form]="form" controlName="occurredOn" label="Data da ocorrencia" type="date" />
+        <app-form-field [form]="form" controlName="categoryId" label="Categoria" type="select" [options]="categoryOptions()" />
+        <app-form-field [form]="form" controlName="cardId" label="Cartao" type="select" [options]="cardOptions()" />
+        <app-form-field [form]="form" controlName="notes" label="Observacoes" type="textarea" placeholder="Anotacao interna opcional" />
       </div>
 
       <div class="create-page__actions">
-        <app-secondary-button routerLink="/transactions">Cancel</app-secondary-button>
+        <app-secondary-button routerLink="/transactions">Cancelar</app-secondary-button>
         <app-primary-button type="submit" [disabled]="saving()">
-          {{ saving() ? 'Saving...' : 'Create transaction' }}
+          {{ saving() ? 'Salvando...' : 'Criar transacao' }}
         </app-primary-button>
       </div>
     </form>
