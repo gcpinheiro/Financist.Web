@@ -1,18 +1,18 @@
 <div class="documents-page">
   <app-page-header
-    eyebrow="Importacoes"
+    eyebrow="Importações"
     title="Documentos e envios"
-    subtitle="Envie extratos e acompanhe o processamento dos arquivos em um so lugar."
+    subtitle="Envie extratos e acompanhe o processamento dos arquivos em um só lugar."
   />
 
   <app-section-card
-    title="Area de envio"
-    subtitle="Envie CSVs, PDFs e exportacoes para centralizar importacoes e conciliacao."
+    title="Área de envio"
+    subtitle="Envie CSVs, PDFs e exportações para centralizar importações e conciliação."
   >
     <div class="documents-page__upload">
       <div>
-        <strong>Adicione arquivos para conciliacao</strong>
-        <p>Use o envio abaixo para colocar novos extratos e lotes de importacao na fila.</p>
+        <strong>Adicione arquivos para conciliação</strong>
+        <p>Use o envio abaixo para colocar novos extratos e lotes de importação na fila.</p>
       </div>
 
       <input #fileInput type="file" hidden multiple (change)="onFilesSelected($event)" />
@@ -27,10 +27,10 @@
   </app-section-card>
 
   @if (loading() && !documents().length) {
-    <app-loading-state label="Carregando importacoes..." />
+    <app-loading-state label="Carregando importações..." />
   } @else if (documents().length) {
     <app-table-card
-      title="Historico de importacoes"
+      title="Histórico de importações"
       subtitle="Arquivos enviados recentemente e seu status atual."
     >
       <app-data-table [columns]="columns" [rows]="documents()" trackByKey="id" />
@@ -38,7 +38,7 @@
   } @else {
     <app-empty-state
       title="Nenhum documento enviado"
-      description="Envie extratos ou exportacoes para iniciar sua fila de importacao."
+      description="Envie extratos ou exportações para iniciar sua fila de importação."
       icon="documents"
     />
   }

@@ -1,42 +1,42 @@
 <div class="feature-page">
   <app-page-header
-    eyebrow="Movimento"
-    title="Lancamentos"
-    subtitle="Revise entradas e saidas com categoria, cartao e data de ocorrencia."
+    eyebrow="Movimentação"
+    title="Transações"
+    subtitle="Revise entradas e saídas com categoria, cartão e data de ocorrência."
   >
-    <app-primary-button actions icon="plus" routerLink="/transactions/new">Nova transacao</app-primary-button>
+    <app-primary-button actions icon="plus" routerLink="/transactions/new">Nova transação</app-primary-button>
   </app-page-header>
 
   <section class="feature-page__stats">
     <app-stat-card
-      label="Receitas no periodo"
-      [value]="incomeTotal() | currency: 'USD' : 'symbol' : '1.0-0'"
+      label="Receitas do mês"
+      [value]="incomeTotal() | currency: 'BRL' : 'symbol' : '1.2-2'"
       icon="trend"
       change="Entradas confirmadas"
       tone="success"
     />
     <app-stat-card
-      label="Despesas no periodo"
-      [value]="expenseTotal() | currency: 'USD' : 'symbol' : '1.0-0'"
+      label="Despesas do mês"
+      [value]="expenseTotal() | currency: 'BRL' : 'symbol' : '1.2-2'"
       icon="transactions"
-      change="Saidas em acompanhamento"
+      change="Saídas em acompanhamento"
       tone="danger"
     />
   </section>
 
   @if (loading() && !transactions().length) {
-    <app-loading-state label="Carregando transacoes..." />
+    <app-loading-state label="Carregando transações..." />
   } @else if (transactions().length) {
     <app-table-card
-      title="Todas as transacoes"
-      subtitle="Historico recente da movimentacao financeira da conta."
+      title="Todas as transações"
+      subtitle="Histórico recente da movimentação financeira da conta."
     >
       <app-data-table [columns]="columns" [rows]="transactions()" trackByKey="id" />
     </app-table-card>
   } @else {
     <app-empty-state
-      title="Nenhuma transacao por aqui"
-      description="Cadastre a primeira movimentacao para montar uma linha do tempo confiavel."
+      title="Nenhuma transação por aqui"
+      description="Cadastre a primeira movimentação para montar uma linha do tempo confiável."
       icon="transactions"
     />
   }

@@ -48,7 +48,7 @@ export class DashboardPageComponent {
   protected readonly goalSnapshot = computed(() => this.goals().slice(0, 5));
 
   protected readonly recentTransactionsColumns: DataTableColumn[] = [
-    { key: 'description', label: 'Descricao' },
+    { key: 'description', label: 'Descrição' },
     { key: 'type', label: 'Tipo', type: 'badge', cell: (row) => this.flowLabel(row.type) },
     { key: 'categoryId', label: 'Categoria', cell: (row) => this.categoryName(row.categoryId) },
     { key: 'occurredOn', label: 'Data', type: 'date' },
@@ -92,7 +92,10 @@ export class DashboardPageComponent {
       return 'Sem categoria';
     }
 
-    return this.categoriesService.categories().find((category) => category.id === categoryId)?.name ?? 'Nao encontrada';
+    return (
+      this.categoriesService.categories().find((category) => category.id === categoryId)?.name ??
+      'Não encontrada'
+    );
   }
 
   private flowLabel(type: string | null): string {

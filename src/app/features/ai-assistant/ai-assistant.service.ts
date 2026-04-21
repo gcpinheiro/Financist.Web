@@ -4,7 +4,7 @@ import { ChatMessage } from './models/chat-message.model';
 import { AiService } from './services/ai.service';
 
 const DEFAULT_SYSTEM_PROMPT =
-  'Voce e um assistente financeiro que ajuda o usuario a entender seus gastos, receitas e metas. Seja claro, direto e util.';
+  'Você é um assistente financeiro que ajuda o usuário a entender seus gastos, receitas e metas. Seja claro, direto e útil.';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AiAssistantService {
       id: 'assistant-welcome',
       role: 'assistant',
       content:
-        'Ola! Sou seu assistente financeiro. Posso ajudar voce a entender gastos, receitas e metas com respostas claras e objetivas.',
+        'Olá! Sou seu assistente financeiro. Posso ajudar você a entender gastos, receitas e metas com respostas claras e objetivas.',
       timestamp: new Date().toISOString()
     }
   ]);
@@ -28,7 +28,7 @@ export class AiAssistantService {
     const normalizedContent = content.trim();
 
     if (!normalizedContent) {
-      return of('Digite uma mensagem antes de enviar.');
+      return of('Digite uma pergunta antes de enviar.');
     }
 
     const userMessage = this.buildMessage('user', normalizedContent);

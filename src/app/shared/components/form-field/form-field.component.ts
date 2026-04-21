@@ -52,21 +52,29 @@ export class FormFieldComponent {
     }
 
     if (errors['required']) {
-      return 'This field is required.';
+      return 'Este campo é obrigatório.';
     }
 
     if (errors['email']) {
-      return 'Please enter a valid email address.';
+      return 'Digite um e-mail válido.';
     }
 
     if (errors['minlength']) {
-      return `Use at least ${errors['minlength'].requiredLength} characters.`;
+      return `Use pelo menos ${errors['minlength'].requiredLength} caracteres.`;
     }
 
     if (errors['min']) {
-      return `Value must be at least ${errors['min'].min}.`;
+      return `O valor mínimo é ${errors['min'].min}.`;
     }
 
-    return 'Please review this value.';
+    if (errors['max']) {
+      return `O valor máximo é ${errors['max'].max}.`;
+    }
+
+    if (errors['pattern']) {
+      return 'Digite um valor no formato esperado.';
+    }
+
+    return 'Revise este valor.';
   }
 }

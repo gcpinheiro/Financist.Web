@@ -22,8 +22,10 @@ export class AppShellComponent {
 
   protected readonly sidebarCompact = signal(false);
   protected readonly mobileSidebarOpen = signal(false);
-  protected readonly pageTitle = signal('Visao geral');
-  protected readonly pageSubtitle = signal('Acompanhe saldos, fluxo de caixa e prioridades financeiras.');
+  protected readonly pageTitle = signal('Visão geral');
+  protected readonly pageSubtitle = signal(
+    'Acompanhe saldos, fluxo de caixa e prioridades financeiras.'
+  );
 
   constructor() {
     this.router.events
@@ -35,7 +37,7 @@ export class AppShellComponent {
       )
       .subscribe((data) => {
         this.pageTitle.set((data['title'] as string | undefined) ?? 'Financist');
-        this.pageSubtitle.set((data['subtitle'] as string | undefined) ?? 'Central financeira');
+        this.pageSubtitle.set((data['subtitle'] as string | undefined) ?? 'Painel financeiro');
       });
   }
 
@@ -56,7 +58,7 @@ export class AppShellComponent {
   }
 
   protected userName(): string {
-    return this.authService.currentUser()?.fullName ?? 'Usuario Financist';
+    return this.authService.currentUser()?.fullName ?? 'Usuário Financist';
   }
 
   protected userRole(): string {
@@ -64,7 +66,7 @@ export class AppShellComponent {
   }
 
   protected userInitials(): string {
-    const fullName = this.authService.currentUser()?.fullName ?? 'Usuario Financist';
+    const fullName = this.authService.currentUser()?.fullName ?? 'Usuário Financist';
     const initials = fullName
       .split(/\s+/)
       .filter(Boolean)

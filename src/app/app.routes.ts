@@ -52,8 +52,8 @@ export const routes: Routes = [
             (component) => component.DashboardPageComponent
           ),
         data: {
-          title: 'Visao geral',
-          subtitle: 'Acompanhe saldos, fluxo de caixa e movimentacoes do dia.'
+          title: 'Visão geral',
+          subtitle: 'Acompanhe saldos, fluxo de caixa e movimentações do dia.'
         }
       },
       {
@@ -64,14 +64,14 @@ export const routes: Routes = [
           ),
         data: {
           title: 'Assistente financeiro',
-          subtitle: 'Consulte contexto financeiro, resumos e proximos passos em um unico chat.'
+          subtitle: 'Consulte contexto financeiro, resumos e próximos passos em um único chat.'
         }
       },
       {
         path: 'transactions',
         data: {
-          title: 'Transacoes',
-          subtitle: 'Acompanhe entradas, saidas e a atividade das contas com clareza.'
+          title: 'Transações',
+          subtitle: 'Acompanhe entradas, saídas e a atividade das contas com clareza.'
         },
         children: [
           {
@@ -88,8 +88,8 @@ export const routes: Routes = [
                 (component) => component.CreateTransactionPageComponent
               ),
             data: {
-              title: 'Nova transacao',
-              subtitle: 'Registre a movimentacao com categoria, conta e contexto.'
+              title: 'Nova transação',
+              subtitle: 'Registre a movimentação com categoria, conta e contexto.'
             }
           }
         ]
@@ -116,7 +116,7 @@ export const routes: Routes = [
               ),
             data: {
               title: 'Nova categoria',
-              subtitle: 'Cadastre uma nova categoria para manter a leitura dos lancamentos.'
+              subtitle: 'Cadastre uma nova categoria para manter a leitura dos lançamentos.'
             }
           }
         ]
@@ -124,8 +124,8 @@ export const routes: Routes = [
       {
         path: 'cards',
         data: {
-          title: 'Cartoes',
-          subtitle: 'Monitore limite, fechamento e vencimento em um unico lugar.'
+          title: 'Cartões',
+          subtitle: 'Monitore limite, fechamento e vencimento em um único lugar.'
         },
         children: [
           {
@@ -142,8 +142,8 @@ export const routes: Routes = [
                 (component) => component.CreateCardPageComponent
               ),
             data: {
-              title: 'Novo cartao',
-              subtitle: 'Cadastre os dados do cartao para acompanhar limites e ciclo.'
+              title: 'Novo cartão',
+              subtitle: 'Cadastre os dados do cartão para acompanhar limites e ciclo.'
             }
           }
         ]
@@ -152,7 +152,7 @@ export const routes: Routes = [
         path: 'goals',
         data: {
           title: 'Metas',
-          subtitle: 'Mantenha objetivos de reserva e investimento sempre visiveis.'
+          subtitle: 'Mantenha objetivos de reserva e investimento sempre visíveis.'
         },
         children: [
           {
@@ -170,7 +170,7 @@ export const routes: Routes = [
               ),
             data: {
               title: 'Nova meta',
-              subtitle: 'Defina alvo, prazo e valor inicial para acompanhar a evolucao.'
+              subtitle: 'Defina alvo, prazo e valor inicial para acompanhar a evolução.'
             }
           }
         ]
@@ -183,7 +183,7 @@ export const routes: Routes = [
           ),
         data: {
           title: 'Documentos',
-          subtitle: 'Centralize importacoes e extratos para conciliacao.'
+          subtitle: 'Centralize importações e extratos para conciliação.'
         }
       },
       {
@@ -193,8 +193,8 @@ export const routes: Routes = [
             (component) => component.SettingsPageComponent
           ),
         data: {
-          title: 'Configuracoes',
-          subtitle: 'Ajuste preferencias, dados da conta e futuras integracoes.'
+          title: 'Configurações',
+          subtitle: 'Ajuste preferências, dados da conta e futuras integrações.'
         }
       }
     ]

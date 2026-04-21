@@ -1,25 +1,25 @@
 <div class="feature-page">
   <app-page-header
-    eyebrow="Cartoes"
-    title="Gestao de cartoes"
+    eyebrow="Cartões"
+    title="Gestão de cartões"
     subtitle="Acompanhe limite, fechamento e vencimento com leitura simples."
   >
-    <app-primary-button actions icon="plus" routerLink="/cards/new">Novo cartao</app-primary-button>
+    <app-primary-button actions icon="plus" routerLink="/cards/new">Novo cartão</app-primary-button>
   </app-page-header>
 
   @if (loading() && !cards().length) {
-    <app-loading-state label="Carregando cartoes..." />
+    <app-loading-state label="Carregando cartões..." />
   } @else if (cards().length) {
     <app-table-card
-      title="Cartoes cadastrados"
-      subtitle="Visualize os cartoes registrados e seus dados principais."
+      title="Cartões cadastrados"
+      subtitle="Visualize os cartões registrados e seus dados principais."
     >
       <app-data-table [columns]="columns" [rows]="cards()" trackByKey="id" />
     </app-table-card>
   } @else {
     <app-empty-state
-      title="Nenhum cartao cadastrado"
-      description="Adicione cartoes para acompanhar limite disponivel e vencimentos."
+      title="Nenhum cartão cadastrado"
+      description="Adicione cartões para acompanhar limite disponível e vencimentos."
       icon="cards"
     />
   }

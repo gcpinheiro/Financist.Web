@@ -44,7 +44,7 @@ export class CreateTransactionPageComponent {
     description: ['', [Validators.required]],
     type: ['Expense', [Validators.required]],
     amount: [null as number | null, [Validators.required, Validators.min(1)]],
-    currency: ['USD', [Validators.required]],
+    currency: ['BRL', [Validators.required]],
     occurredOn: [new Date().toISOString().slice(0, 10), [Validators.required]],
     categoryId: [''],
     cardId: [''],
@@ -60,7 +60,7 @@ export class CreateTransactionPageComponent {
 
   protected readonly cardOptions = computed<FormFieldOption[]>(() =>
     this.cards().map((card) => ({
-      label: `${card.name ?? 'Cartao'} - ${card.last4Digits ?? '----'}`,
+      label: `${card.name ?? 'Cartão'} - ${card.last4Digits ?? '----'}`,
       value: card.id
     }))
   );
@@ -87,7 +87,7 @@ export class CreateTransactionPageComponent {
     const payload: CreateTransactionRequest = {
       description: (rawValue.description ?? '').trim(),
       amount: rawValue.amount ?? 0,
-      currency: (rawValue.currency ?? 'USD').trim().toUpperCase(),
+      currency: (rawValue.currency ?? 'BRL').trim().toUpperCase(),
       type: rawValue.type as CreateTransactionRequest['type'],
       occurredOn: rawValue.occurredOn ?? new Date().toISOString().slice(0, 10),
       categoryId: rawValue.categoryId || null,

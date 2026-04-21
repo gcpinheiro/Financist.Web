@@ -1,41 +1,41 @@
 <div class="dashboard-page">
   <app-page-header
     eyebrow="Resumo"
-    title="Visao financeira do dia"
-    subtitle="Um panorama de saldos, movimentacoes recentes e andamento das metas."
+    title="Visão financeira do dia"
+    subtitle="Um panorama de saldos, movimentações recentes e andamento das metas."
   />
 
   @if (loading() && !summary()) {
-    <app-loading-state label="Montando sua visao geral..." />
+    <app-loading-state label="Montando sua visão geral..." />
   } @else if (summary(); as summaryValue) {
     <section class="dashboard-page__stats">
       <app-stat-card
         label="Saldo total"
-        [value]="summaryValue.balance | currency: 'USD' : 'symbol' : '1.0-0'"
+        [value]="summaryValue.balance | currency: 'BRL' : 'symbol' : '1.2-2'"
         icon="wallet"
-        helper="Resultado acumulado entre entradas e saidas"
+        helper="Resultado acumulado entre entradas e saídas"
         tone="neutral"
       />
       <app-stat-card
-        label="Receitas"
-        [value]="summaryValue.totalIncome | currency: 'USD' : 'symbol' : '1.0-0'"
+        label="Receitas do mês"
+        [value]="summaryValue.totalIncome | currency: 'BRL' : 'symbol' : '1.2-2'"
         icon="trend"
-        [change]="summaryValue.transactionCount + ' lancamentos'"
-        helper="Entradas registradas no periodo"
+        [change]="summaryValue.transactionCount + ' lançamentos'"
+        helper="Entradas registradas no período"
         tone="success"
       />
       <app-stat-card
-        label="Despesas"
-        [value]="summaryValue.totalExpenses | currency: 'USD' : 'symbol' : '1.0-0'"
+        label="Despesas do mês"
+        [value]="summaryValue.totalExpenses | currency: 'BRL' : 'symbol' : '1.2-2'"
         icon="transactions"
-        helper="Saidas registradas no periodo"
+        helper="Saídas registradas no período"
         tone="danger"
       />
       <app-stat-card
         label="Metas acompanhadas"
         [value]="summaryValue.goalCount.toString()"
         icon="target"
-        [change]="summaryValue.averageGoalProgress + '% de progresso medio'"
+        [change]="summaryValue.averageGoalProgress + '% de progresso médio'"
         helper="Entre todas as metas ativas"
         tone="info"
       />
@@ -44,8 +44,8 @@
     <section class="dashboard-page__detail">
       @if (recentTransactions().length) {
         <app-table-card
-          title="Transacoes recentes"
-          subtitle="Ultimos lancamentos recebidos na sua linha do tempo financeira."
+          title="Últimas transações"
+          subtitle="Últimos lançamentos recebidos na sua linha do tempo financeira."
         >
           <app-data-table
             [columns]="recentTransactionsColumns"
@@ -55,8 +55,8 @@
         </app-table-card>
       } @else {
         <app-empty-state
-          title="Nenhuma transacao encontrada"
-          description="Cadastre movimentacoes para ver a atividade recente aqui."
+          title="Nenhuma transação encontrada"
+          description="Cadastre movimentações para ver a atividade recente aqui."
           icon="transactions"
         />
       }
@@ -71,7 +71,7 @@
       } @else {
         <app-empty-state
           title="Nenhuma meta cadastrada"
-          description="Crie uma meta para acompanhar progresso e prioridade nesta visao."
+          description="Crie uma meta para acompanhar progresso e prioridade nesta visão."
           icon="goals"
         />
       }

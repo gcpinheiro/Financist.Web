@@ -21,7 +21,7 @@ import { apiErrorInterceptor } from './core/interceptors/api-error.interceptor';
 import localePt from '@angular/common/locales/pt';
 import { ThemeService } from './core/theme/theme.service';
 
-registerLocaleData(localePt);
+registerLocaleData(localePt, 'pt-BR');
 
 export const appConfig: ApplicationConfig = {
   providers: [

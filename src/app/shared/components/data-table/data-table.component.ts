@@ -34,12 +34,13 @@ export class DataTableComponent {
       const requestedCurrency =
         typeof column.currencyCode === 'function' ? column.currencyCode(row) : column.currencyCode;
       const currency =
-        requestedCurrency && requestedCurrency.trim() ? requestedCurrency.trim().toUpperCase() : 'USD';
+        requestedCurrency && requestedCurrency.trim() ? requestedCurrency.trim().toUpperCase() : 'BRL';
 
       return new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency,
-        maximumFractionDigits: 0
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
       }).format(value);
     }
 

@@ -2,7 +2,7 @@
   <app-page-header
     eyebrow="Estrutura"
     title="Categorias"
-    subtitle="Mantenha uma estrutura clara para dar contexto aos lancamentos."
+    subtitle="Mantenha uma estrutura clara para dar contexto aos lançamentos."
   >
     <app-primary-button actions icon="plus" routerLink="/categories/new">Nova categoria</app-primary-button>
   </app-page-header>
@@ -12,7 +12,7 @@
   } @else if (categories().length) {
     <app-table-card
       title="Categorias ativas"
-      subtitle="Categorias disponiveis para lancamentos e leitura financeira."
+      subtitle="Categorias disponíveis para lançamentos e leitura financeira."
     >
       <app-data-table [columns]="columns" [rows]="categories()" trackByKey="id" />
     </app-table-card>

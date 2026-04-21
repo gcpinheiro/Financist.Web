@@ -34,7 +34,7 @@ export class GoalsPageComponent {
 
   protected readonly columns: DataTableColumn[] = [
     { key: 'name', label: 'Meta' },
-    { key: 'description', label: 'Descricao' },
+    { key: 'description', label: 'Descrição' },
     {
       key: 'currentAmount',
       label: 'Atual',

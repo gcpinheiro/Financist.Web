@@ -12,7 +12,7 @@ export class TopbarComponent {
   readonly title = input.required<string>();
   readonly subtitle = input<string>('');
   readonly userName = input('Gabriel Costa');
-  readonly userRole = input('Responsavel financeiro');
+  readonly userRole = input('Responsável financeiro');
   readonly userInitials = input('GC');
   readonly sidebarCompact = input(false);
 

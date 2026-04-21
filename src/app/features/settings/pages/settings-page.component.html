@@ -1,14 +1,14 @@
 <div class="settings-page">
   <app-page-header
     eyebrow="Conta"
-    title="Configuracoes"
-    subtitle="Espaco preparado para preferencias, integracoes e dados da conta."
+    title="Configurações"
+    subtitle="Espaço preparado para preferências, integrações e dados da conta."
   />
 
   <section class="settings-page__grid">
     <app-section-card
       title="Tema"
-      subtitle="Escolha o tema da interface. O modo claro e o padrao do produto."
+      subtitle="Escolha o tema da interface. O modo claro é o padrão do produto."
     >
       <div class="settings-page__theme-options">
         <button
@@ -18,7 +18,7 @@
           (click)="setTheme('light')"
         >
           <strong>Claro</strong>
-          <span>Visual leve para uso diario. Este e o tema padrao.</span>
+          <span>Visual leve para uso diário. Este é o tema padrão.</span>
         </button>
 
         <button
@@ -28,27 +28,27 @@
           (click)="setTheme('dark')"
         >
           <strong>Escuro</strong>
-          <span>Reduce brilho e destaca informacoes em ambientes com pouca luz.</span>
+          <span>Reduz brilho e destaca informações em ambientes com pouca luz.</span>
         </button>
       </div>
     </app-section-card>
 
     <app-section-card
       title="Perfil e conta"
-      subtitle="Use esta area para dados da organizacao, fuso horario e moeda padrao."
+      subtitle="Use esta área para dados da organização, fuso horário e moeda padrão."
     >
       <p class="settings-page__copy">
-        Este modulo ja esta organizado para receber ajustes operacionais sem precisar rever a
+        Este módulo já está organizado para receber ajustes operacionais sem precisar rever a
         arquitetura da tela no futuro.
       </p>
     </app-section-card>
 
     <app-section-card
-      title="Integracoes"
-      subtitle="Mantenha espaco para chaves, conectores bancarios e origens de importacao."
+      title="Integrações"
+      subtitle="Mantenha espaço para chaves, conectores bancários e origens de importação."
     >
       <p class="settings-page__copy">
-        Este painel pode evoluir para concentrar integracoes externas e configuracoes de conexao.
+        Este painel pode evoluir para concentrar integrações externas e configurações de conexão.
       </p>
     </app-section-card>
   </section>

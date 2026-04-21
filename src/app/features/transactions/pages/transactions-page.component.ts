@@ -39,10 +39,10 @@ export class TransactionsPageComponent {
   protected readonly loading = this.transactionsService.loading;
 
   protected readonly columns: DataTableColumn[] = [
-    { key: 'description', label: 'Descricao' },
+    { key: 'description', label: 'Descrição' },
     { key: 'type', label: 'Tipo', type: 'badge', cell: (row) => this.flowLabel(row.type) },
     { key: 'categoryId', label: 'Categoria', cell: (row) => this.categoryName(row.categoryId) },
-    { key: 'cardId', label: 'Cartao', cell: (row) => this.cardLabel(row.cardId) },
+    { key: 'cardId', label: 'Cartão', cell: (row) => this.cardLabel(row.cardId) },
     { key: 'occurredOn', label: 'Data', type: 'date' },
     {
       key: 'amount',
@@ -76,7 +76,10 @@ export class TransactionsPageComponent {
       return 'Sem categoria';
     }
 
-    return this.categoriesService.categories().find((category) => category.id === categoryId)?.name ?? 'Nao encontrada';
+    return (
+      this.categoriesService.categories().find((category) => category.id === categoryId)?.name ??
+      'Não encontrada'
+    );
   }
 
   private cardLabel(cardId: string | null): string {
@@ -85,7 +88,7 @@ export class TransactionsPageComponent {
     }
 
     const card = this.cardsService.cards().find((item) => item.id === cardId);
-    return card ? `${card.name ?? 'Cartao'} - ${card.last4Digits ?? '----'}` : 'Nao encontrado';
+    return card ? `${card.name ?? 'Cartão'} - ${card.last4Digits ?? '----'}` : 'Não encontrado';
   }
 
   private flowLabel(type: string | null): string {

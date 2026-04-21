@@ -37,7 +37,7 @@ export class CreateGoalPageComponent {
     name: ['', [Validators.required]],
     description: [''],
     targetAmount: [null as number | null, [Validators.required, Validators.min(1)]],
-    currency: ['USD', [Validators.required]],
+    currency: ['BRL', [Validators.required]],
     initialAmount: [0, [Validators.required, Validators.min(0)]]
   });
 
@@ -54,7 +54,7 @@ export class CreateGoalPageComponent {
       name: (rawValue.name ?? '').trim(),
       description: (rawValue.description ?? '').trim(),
       targetAmount: rawValue.targetAmount ?? 0,
-      currency: (rawValue.currency ?? 'USD').trim().toUpperCase(),
+      currency: (rawValue.currency ?? 'BRL').trim().toUpperCase(),
       initialAmount: rawValue.initialAmount ?? 0
     };
 

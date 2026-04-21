@@ -53,7 +53,7 @@ export class LoginPageComponent {
       },
       error: () => {
         this.loading.set(false);
-        this.errorMessage.set('Nao foi possivel entrar. Verifique seus dados e tente novamente.');
+        this.errorMessage.set('Não foi possível entrar. Verifique seus dados e tente novamente.');
       }
     });
   }

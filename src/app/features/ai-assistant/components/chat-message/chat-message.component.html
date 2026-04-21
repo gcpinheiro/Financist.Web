@@ -4,12 +4,12 @@
   [class.chat-message--assistant]="message().role === 'assistant'"
 >
   <div class="chat-message__avatar">
-    {{ message().role === 'user' ? 'Voce' : 'IA' }}
+    {{ message().role === 'user' ? 'Você' : 'IA' }}
   </div>
 
   <div class="chat-message__content">
     <div class="chat-message__meta">
-      <span>{{ message().role === 'user' ? 'Voce' : 'Assistente Financist' }}</span>
+      <span>{{ message().role === 'user' ? 'Você' : 'Assistente financeiro' }}</span>
       <time>{{ formattedTime() }}</time>
     </div>
 

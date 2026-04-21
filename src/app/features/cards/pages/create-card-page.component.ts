@@ -37,7 +37,7 @@ export class CreateCardPageComponent {
     name: ['', [Validators.required]],
     last4Digits: ['', [Validators.required, Validators.pattern(/^\d{4}$/)]],
     limitAmount: [null as number | null, [Validators.required, Validators.min(1)]],
-    currency: ['USD', [Validators.required]],
+    currency: ['BRL', [Validators.required]],
     closingDay: [15, [Validators.required, Validators.min(1), Validators.max(31)]],
     dueDay: [1, [Validators.required, Validators.min(1), Validators.max(31)]]
   });
@@ -55,7 +55,7 @@ export class CreateCardPageComponent {
       name: (rawValue.name ?? '').trim(),
       last4Digits: rawValue.last4Digits,
       limitAmount: rawValue.limitAmount ?? 0,
-      currency: (rawValue.currency ?? 'USD').trim().toUpperCase(),
+      currency: (rawValue.currency ?? 'BRL').trim().toUpperCase(),
       closingDay: rawValue.closingDay ?? 1,
       dueDay: rawValue.dueDay ?? 1
     };

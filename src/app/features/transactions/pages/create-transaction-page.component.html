@@ -1,20 +1,20 @@
 <div class="create-page">
   <app-page-header
     eyebrow="Cadastro"
-    title="Nova transacao"
-    subtitle="Registre a movimentacao com os principais dados financeiros do lancamento."
+    title="Nova transação"
+    subtitle="Registre a movimentação com os principais dados financeiros do lançamento."
   />
 
   <app-section-card
-    title="Dados da transacao"
-    subtitle="Descricao, valor, moeda, tipo, data e referencias opcionais de categoria ou cartao."
+    title="Dados da transação"
+    subtitle="Descrição, valor, moeda, tipo, data e referências opcionais de categoria ou cartão."
   >
     <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="create-page__grid">
         <app-form-field
           [form]="form"
           controlName="description"
-          label="Descricao"
+          label="Descrição"
           placeholder="Exemplo: fatura mensal da AWS"
         />
         <app-form-field
@@ -29,24 +29,24 @@
           controlName="amount"
           label="Valor"
           type="number"
-          placeholder="0.00"
+          placeholder="0,00"
         />
         <app-form-field
           [form]="form"
           controlName="currency"
           label="Moeda"
-          placeholder="USD"
+          placeholder="BRL"
         />
-        <app-form-field [form]="form" controlName="occurredOn" label="Data da ocorrencia" type="date" />
+        <app-form-field [form]="form" controlName="occurredOn" label="Data da ocorrência" type="date" />
         <app-form-field [form]="form" controlName="categoryId" label="Categoria" type="select" [options]="categoryOptions()" />
-        <app-form-field [form]="form" controlName="cardId" label="Cartao" type="select" [options]="cardOptions()" />
-        <app-form-field [form]="form" controlName="notes" label="Observacoes" type="textarea" placeholder="Anotacao interna opcional" />
+        <app-form-field [form]="form" controlName="cardId" label="Cartão" type="select" [options]="cardOptions()" />
+        <app-form-field [form]="form" controlName="notes" label="Observações" type="textarea" placeholder="Anotação interna opcional" />
       </div>
 
       <div class="create-page__actions">
         <app-secondary-button routerLink="/transactions">Cancelar</app-secondary-button>
         <app-primary-button type="submit" [disabled]="saving()">
-          {{ saving() ? 'Salvando...' : 'Criar transacao' }}
+          {{ saving() ? 'Salvando...' : 'Criar transação' }}
         </app-primary-button>
       </div>
     </form>

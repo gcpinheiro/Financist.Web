@@ -33,7 +33,7 @@ export class CardsPageComponent {
   protected readonly loading = this.cardsService.loading;
 
   protected readonly columns: DataTableColumn[] = [
-    { key: 'name', label: 'Cartao' },
+    { key: 'name', label: 'Cartão' },
     { key: 'last4Digits', label: 'Final', cell: (row) => `**** ${row.last4Digits ?? '----'}` },
     {
       key: 'limitAmount',

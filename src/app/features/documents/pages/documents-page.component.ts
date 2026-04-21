@@ -68,20 +68,25 @@ export class DocumentsPageComponent {
   }
 
   private formatSize(sizeBytes: number): string {
+    const numberFormatter = new Intl.NumberFormat('pt-BR', {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1
+    });
+
     if (sizeBytes >= 1024 * 1024) {
-      return `${(sizeBytes / (1024 * 1024)).toFixed(1)} MB`;
+      return `${numberFormatter.format(sizeBytes / (1024 * 1024))} MB`;
     }
 
     if (sizeBytes >= 1024) {
-      return `${Math.round(sizeBytes / 1024)} KB`;
+      return `${new Intl.NumberFormat('pt-BR').format(Math.round(sizeBytes / 1024))} KB`;
     }
 
-    return `${sizeBytes} B`;
+    return `${new Intl.NumberFormat('pt-BR').format(sizeBytes)} B`;
   }
 
   private statusLabel(status: string | null): string {
     if (status === 'Completed') {
-      return 'Concluido';
+      return 'Concluído';
     }
 
     if (status === 'Processing') {

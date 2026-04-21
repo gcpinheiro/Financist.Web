@@ -2,19 +2,19 @@
   <app-page-header
     eyebrow="Cadastro"
     title="Nova meta"
-    subtitle="Defina o objetivo, o valor inicial e a moeda para acompanhar a evolucao."
+    subtitle="Defina o objetivo, o valor inicial e a moeda para acompanhar a evolução."
   />
 
   <app-section-card
-    title="Configuracao da meta"
-    subtitle="Nome, descricao, valor alvo, moeda e valor inicial para o acompanhamento."
+    title="Configuração da meta"
+    subtitle="Nome, descrição, valor alvo, moeda e valor inicial para o acompanhamento."
   >
     <form class="create-page__form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="create-page__grid">
-        <app-form-field [form]="form" controlName="name" label="Nome da meta" placeholder="Reserva de emergencia" />
-        <app-form-field [form]="form" controlName="description" label="Descricao" type="textarea" placeholder="Contexto opcional para esta meta" />
+        <app-form-field [form]="form" controlName="name" label="Nome da meta" placeholder="Reserva de emergência" />
+        <app-form-field [form]="form" controlName="description" label="Descrição" type="textarea" placeholder="Contexto opcional para esta meta" />
         <app-form-field [form]="form" controlName="targetAmount" label="Valor objetivo" type="number" />
-        <app-form-field [form]="form" controlName="currency" label="Moeda" placeholder="USD" />
+        <app-form-field [form]="form" controlName="currency" label="Moeda" placeholder="BRL" />
         <app-form-field [form]="form" controlName="initialAmount" label="Valor inicial" type="number" />
       </div>
 

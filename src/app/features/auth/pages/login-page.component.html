@@ -5,10 +5,10 @@
     </div>
 
     <div class="login-page__hero-copy">
-      <h1>Organize caixa, cartoes, metas e importacoes em um unico ambiente financeiro.</h1>
+      <h1>Organize caixa, cartões, metas e importações em um único ambiente financeiro.</h1>
       <p>
-        O Financist foi pensado para o uso diario: uma interface calma, legivel e segura para
-        acompanhar o que entra, o que sai e o que ainda precisa de atencao.
+        O Financist foi pensado para o uso diário: uma interface calma, legível e segura para
+        acompanhar o que entra, o que sai e o que ainda precisa de atenção.
       </p>
     </div>
 
@@ -16,22 +16,22 @@
       <article>
         <app-icon name="wallet" [size]="20" />
         <div>
-          <strong>Saldos em um so lugar</strong>
+          <strong>Saldos em um só lugar</strong>
           <span>Acompanhe receitas, despesas e reserva sem trocar de contexto.</span>
         </div>
       </article>
       <article>
         <app-icon name="trend" [size]="20" />
         <div>
-          <strong>Leitura rapida do fluxo</strong>
+          <strong>Leitura rápida do fluxo</strong>
           <span>Entenda o comportamento do caixa com foco no que importa.</span>
         </div>
       </article>
       <article>
         <app-icon name="documents" [size]="20" />
         <div>
-          <strong>Importacao preparada</strong>
-          <span>Centralize arquivos e mantenha a conciliacao pronta para o proximo passo.</span>
+          <strong>Importação preparada</strong>
+          <span>Centralize arquivos e mantenha a conciliação pronta para o próximo passo.</span>
         </div>
       </article>
     </div>
@@ -48,14 +48,14 @@
       </div>
 
       <h2>Bem-vindo de volta</h2>
-      <p>Use suas credenciais para acessar a visao geral e acompanhar sua operacao financeira.</p>
+      <p>Use suas credenciais para acessar a visão geral e acompanhar sua operação financeira.</p>
     </div>
 
     <form class="login-page__form" [formGroup]="form" (ngSubmit)="submit()">
       <app-form-field
         [form]="form"
         controlName="email"
-        label="Email"
+        label="E-mail"
         placeholder="financeiro@empresa.com"
         type="email"
         autocomplete="email"
@@ -83,7 +83,7 @@
     </form>
 
     <div class="login-page__footer">
-      <span>Entre com sua conta da empresa ou crie um novo acesso para comecar.</span>
+      <span>Entre com sua conta da empresa ou crie um novo acesso para começar.</span>
       <a routerLink="/auth/register">Precisa de uma nova conta?</a>
     </div>
   </section>
