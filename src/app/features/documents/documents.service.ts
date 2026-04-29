@@ -23,7 +23,9 @@ export class DocumentsService {
 
     this.loading.set(true);
 
-    const request$ = environment.useMockData ? of(MOCK_DOCUMENT_IMPORTS).pipe(delay(220)) : of([]);
+    const request$ = environment.useMockData
+      ? of(MOCK_DOCUMENT_IMPORTS).pipe(delay(220))
+      : this.api.get<DocumentImport[]>('/documents');
 
     request$.pipe(finalize(() => this.loading.set(false))).subscribe({
       next: (documents) => {
