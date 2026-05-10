@@ -10,7 +10,16 @@ import { join } from 'node:path';
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+const angularApp = new AngularNodeAppEngine({
+  allowedHosts: [
+    'localhost',
+    'localhost:4000',
+    '127.0.0.1',
+    '127.0.0.1:4000',
+    'financist-web-alb-2111519454.sa-east-1.elb.amazonaws.com',
+    '172.31.*.*',
+  ],
+});
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -22,6 +31,15 @@ const angularApp = new AngularNodeAppEngine();
  *   // Handle API request
  * });
  * ```
+ *
+ * /**
+ * Health check endpoint for load balancer
+ */
+app.get('/health', (_req, res) => {
+  res.status(200).send('ok');
+});
+
+/**
  */
 
 /**

@@ -1,44 +1,251 @@
 <div class="documents-page">
   <app-page-header
-    eyebrow="Importações"
+    eyebrow="Importacoes"
     title="Documentos e envios"
-    subtitle="Envie extratos e acompanhe o processamento dos arquivos em um só lugar."
+    subtitle="Envie extratos, revise lancamentos encontrados e importe somente o que estiver correto."
   />
 
   <app-section-card
-    title="Área de envio"
-    subtitle="Envie CSVs, PDFs e exportações para centralizar importações e conciliação."
+    title="Area de envio"
+    subtitle="PDFs enviados sao indexados e avaliados para gerar candidatos de transacao."
   >
     <div class="documents-page__upload">
       <div>
-        <strong>Adicione arquivos para conciliação</strong>
-        <p>Use o envio abaixo para colocar novos extratos e lotes de importação na fila.</p>
+        <strong>Adicionar extratos para leitura</strong>
+        <p>Compras parceladas sao agrupadas, mas cada parcela mantem sua propria identidade.</p>
       </div>
 
-      <input #fileInput type="file" hidden multiple (change)="onFilesSelected($event)" />
+      <input #fileInput type="file" hidden multiple accept="application/pdf,.pdf" (change)="onFilesSelected($event)" />
       <app-primary-button icon="upload" [disabled]="uploading()" (pressed)="fileInput.click()">
-        {{ uploading() ? 'Enviando...' : 'Enviar arquivos' }}
+        {{ uploading() ? 'Enviando...' : 'Enviar PDFs' }}
       </app-primary-button>
     </div>
 
     @if (lastUploadMessage()) {
-      <div class="documents-page__message">{{ lastUploadMessage() }}</div>
+      <div class="documents-page__message documents-page__message--success">
+        {{ lastUploadMessage() }}
+      </div>
     }
   </app-section-card>
 
   @if (loading() && !documents().length) {
-    <app-loading-state label="Carregando importações..." />
+    <app-loading-state label="Carregando importacoes..." />
   } @else if (documents().length) {
-    <app-table-card
-      title="Histórico de importações"
-      subtitle="Arquivos enviados recentemente e seu status atual."
-    >
-      <app-data-table [columns]="columns" [rows]="documents()" trackByKey="id" />
-    </app-table-card>
+    <section class="documents-page__workspace">
+      <app-section-card
+        title="Historico"
+        subtitle="Selecione um documento para revisar os lancamentos encontrados."
+      >
+        <div class="documents-page__document-list">
+          @for (document of documents(); track document.id) {
+            <button
+              type="button"
+              class="document-row"
+              [class.document-row--active]="selectedDocumentId() === document.id"
+              (click)="selectDocument(document)"
+            >
+              <span class="document-row__icon">
+                <app-icon name="documents" [size]="18" />
+              </span>
+
+              <span class="document-row__main">
+                <strong>{{ document.originalFileName || 'Documento sem nome' }}</strong>
+                <span>{{ formatDate(document.uploadedAtUtc) }} · {{ formatSize(document.sizeBytes) }}</span>
+              </span>
+
+              <span class="status-pill" [ngClass]="'status-pill--' + document.status.toLowerCase()">
+                {{ statusLabel(document.status) }}
+              </span>
+            </button>
+          }
+        </div>
+      </app-section-card>
+
+      <app-section-card
+        title="Lancamentos encontrados"
+        subtitle="Confira as parcelas e importe os candidatos aprovados para transacoes."
+      >
+        @if (!selectedDocument()) {
+          <div class="review-empty">
+            <app-icon name="search" [size]="22" />
+            <span>Selecione um documento para abrir a revisao.</span>
+          </div>
+        } @else {
+          <div class="review-header">
+            <div>
+              <strong>{{ selectedDocument()?.originalFileName }}</strong>
+              <span>{{ pendingCandidates() }} para revisar · {{ importedCandidates() }} importado(s)</span>
+            </div>
+
+            <app-secondary-button icon="search" [disabled]="loadingCandidates()" (pressed)="selectDocument(selectedDocument()!, true)">
+              Atualizar
+            </app-secondary-button>
+          </div>
+
+          @if (candidateMessage()) {
+            <div class="documents-page__message documents-page__message--info">{{ candidateMessage() }}</div>
+          }
+
+          @if (candidateError()) {
+            <div class="documents-page__message documents-page__message--danger">{{ candidateError() }}</div>
+          }
+
+          @if (loadingCandidates()) {
+            <app-loading-state label="Carregando lancamentos..." />
+          } @else if (candidates().length) {
+            <div class="candidate-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Descricao</th>
+                    <th>Data</th>
+                    <th>Parcela</th>
+                    <th>Grupo</th>
+                    <th class="align-end">Valor</th>
+                    <th>Status</th>
+                    <th class="align-end">Acao</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  @for (candidate of candidates(); track candidate.id) {
+                    <tr>
+                      <td>
+                        @if (editingCandidateId() === candidate.id && draft()) {
+                          <input
+                            class="candidate-input candidate-input--wide"
+                            type="text"
+                            [ngModel]="draft()?.description"
+                            (ngModelChange)="updateDraft({ description: $event })"
+                          />
+                        } @else {
+                          <div class="candidate-main">
+                            <strong>{{ candidate.description || '-' }}</strong>
+                            <span>{{ typeLabel(candidate.type) }} · confianca {{ confidenceLabel(candidate.confidence) }}</span>
+                          </div>
+                        }
+                      </td>
+                      <td>
+                        @if (editingCandidateId() === candidate.id && draft()) {
+                          <input
+                            class="candidate-input"
+                            type="date"
+                            [ngModel]="draft()?.occurredOn"
+                            (ngModelChange)="updateDraft({ occurredOn: $event })"
+                          />
+                        } @else {
+                          {{ formatDate(candidate.occurredOn) }}
+                        }
+                      </td>
+                      <td>
+                        <span class="installment-pill" [class.installment-pill--grouped]="candidate.installmentNumber">
+                          {{ installmentLabel(candidate) }}
+                        </span>
+                      </td>
+                      <td>
+                        <span class="candidate-key">{{ shortKey(candidate.installmentGroupKey) }}</span>
+                      </td>
+                      <td class="align-end">
+                        @if (editingCandidateId() === candidate.id && draft()) {
+                          <div class="candidate-money-edit">
+                            <select
+                              class="candidate-input candidate-input--currency"
+                              [ngModel]="draft()?.currency"
+                              (ngModelChange)="updateDraft({ currency: $event })"
+                            >
+                              <option value="BRL">BRL</option>
+                              <option value="USD">USD</option>
+                              <option value="EUR">EUR</option>
+                            </select>
+                            <input
+                              class="candidate-input candidate-input--amount"
+                              type="number"
+                              min="0.01"
+                              step="0.01"
+                              [ngModel]="draft()?.amount"
+                              (ngModelChange)="updateDraft({ amount: +$event })"
+                            />
+                          </div>
+                        } @else {
+                          {{ formatCurrency(candidate.amount, candidate.currency) }}
+                        }
+                      </td>
+                      <td>
+                        @if (editingCandidateId() === candidate.id && draft()) {
+                          <select
+                            class="candidate-input"
+                            [ngModel]="draft()?.type"
+                            (ngModelChange)="updateDraft({ type: $event })"
+                          >
+                            <option value="Expense">Saida</option>
+                            <option value="Income">Entrada</option>
+                          </select>
+                        } @else {
+                          <span class="status-pill" [ngClass]="'status-pill--' + candidate.status.toLowerCase()">
+                            {{ candidateStatusLabel(candidate.status) }}
+                          </span>
+                        }
+                      </td>
+                      <td class="align-end">
+                        <div class="candidate-actions">
+                          @if (editingCandidateId() === candidate.id) {
+                            <button
+                              type="button"
+                              class="candidate-action"
+                              [disabled]="importingCandidateId() === candidate.id"
+                              (click)="importCandidate(candidate)"
+                            >
+                              <app-icon name="plus" [size]="16" />
+                              <span>{{ importingCandidateId() === candidate.id ? 'Importando' : 'Importar' }}</span>
+                            </button>
+                            <button type="button" class="candidate-action" (click)="cancelEdit()">Cancelar</button>
+                          } @else {
+                            <button
+                              type="button"
+                              class="candidate-action"
+                              [disabled]="candidate.status !== 'PendingReview'"
+                              (click)="startEdit(candidate)"
+                            >
+                              Editar
+                            </button>
+                            <button
+                              type="button"
+                              class="candidate-action"
+                              [disabled]="candidate.status !== 'PendingReview' || importingCandidateId() === candidate.id"
+                              (click)="importCandidate(candidate)"
+                            >
+                              <app-icon name="plus" [size]="16" />
+                              <span>{{ importingCandidateId() === candidate.id ? 'Importando' : 'Importar' }}</span>
+                            </button>
+                            <button
+                              type="button"
+                              class="candidate-action candidate-action--danger"
+                              [disabled]="candidate.status !== 'PendingReview' || rejectingCandidateId() === candidate.id"
+                              (click)="rejectCandidate(candidate)"
+                            >
+                              {{ rejectingCandidateId() === candidate.id ? 'Rejeitando' : 'Rejeitar' }}
+                            </button>
+                          }
+                        </div>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          } @else {
+            <div class="review-empty">
+              <app-icon name="transactions" [size]="22" />
+              <span>Nenhum candidato disponivel para este documento.</span>
+            </div>
+          }
+        }
+      </app-section-card>
+    </section>
   } @else {
     <app-empty-state
       title="Nenhum documento enviado"
-      description="Envie extratos ou exportações para iniciar sua fila de importação."
+      description="Envie um PDF para iniciar a leitura automatica de lancamentos."
       icon="documents"
     />
   }

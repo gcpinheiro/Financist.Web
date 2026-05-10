@@ -38,6 +38,10 @@ export class TransactionsService {
     });
   }
 
+  refresh(): void {
+    this.load(true);
+  }
+
   create(payload: CreateTransactionRequest): Observable<Transaction> {
     if (environment.useMockData) {
       const transaction: Transaction = {
